@@ -729,11 +729,12 @@ html, body {
     position: absolute;
     background-color: #3FA9F5;
     color: #fff;
-    top: -2px;
-    right: -75px;
+    top: 0px;
+    right: 0px;
     width: 74px;
     height: 36px;
     font-size: 14px;
+    line-height: 24px;
     z-index: 300;
     padding: 8px 5.5px;
     cursor: pointer;
