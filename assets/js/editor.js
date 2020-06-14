@@ -947,7 +947,7 @@
                                     <i class='fa fa-picture-o' aria-hidden='true'></i>\
                                 </span>\
                             </div>\
-                            <input type='text' value='" + src.trim() + "' class='form-control add-image' data-type='src' data-id='" + id + "' placeholder='Insert image SRC' aria-label='Insert image SRC' aria-describedby='intput-group-src'>\
+                            <input type='text' value='" + src.trim() + "' class='form-control add-image' data-type='src' data-id='" + id + "' placeholder='Insert Image SRC' aria-label='Insert Image SRC' aria-describedby='intput-group-src'>\
                         </div>";
                         
                         tooltip+="<div class='br'></div>";
@@ -955,22 +955,22 @@
                         tooltip+="<div class='input-group'>\
                             <div class='input-group-prepend'>\
                             <span class='input-group-text' id='input-group-url'>\
-                                    <i class='fa fa-picture-o' aria-hidden='true'></i>\
+                                    <i class='fa fa-link' aria-hidden='true'></i>\
                                 </span>\
                             </div>\
                             <input type='text' value='" + url.trim() + "' class='form-control add-image' data-type='url' data-id='" + id + "' placeholder='Insert Image Link' aria-label='Insert Image Link' aria-describedby='intput-group-url' >\
                         </div>";
                         
-                        tooltip+="<div class='br'></div>";
+                        // tooltip+="<div class='br'></div>";
                         
-                        tooltip+="<div class='text-left'>\
-                                    <button type='button' class='btn btn-secondary' id='CreateDynamicImage'>\
-                                        <i class='fa fa-picture-o'></i> Create Generic Image\
-                                    </button> \
-                                    <button type='button' class='btn btn-danger hidden' id='DeleteDynamicImage'>\
-                                        <i class='fa fa-trash-o'></i> Remove Generic Image\
-                                    </button>\
-                            </div>";
+                        // tooltip+="<div class='text-left'>\
+                        //             <button type='button' class='btn btn-secondary' id='CreateDynamicImage'>\
+                        //                 <i class='fa fa-picture-o'></i> Create Generic Image\
+                        //             </button> \
+                        //             <button type='button' class='btn btn-danger hidden' id='DeleteDynamicImage'>\
+                        //                 <i class='fa fa-trash-o'></i> Remove Generic Image\
+                        //             </button>\
+                        //     </div>";
                     break;
                         
                         
@@ -1777,8 +1777,9 @@
 			
 		console.log(id, type, value);
 		
-		if(value == '' && type != 'alt')
+		if(value == '' && type != 'alt') {
 			value=null;
+        }
 
 		if(type == 'src' && $.isImg(value)) {
 			
@@ -1823,17 +1824,15 @@
 				container = data.parents('td'),
 				findImg = $(container[0]).html().match(/(<img.*?>)/i), img = null;
 
-			if(null !== findImg)
+			if(null !== findImg) {
 				img = findImg[0].replace(/(<img.*?>)/i, '$1');
+            }
 			
-			if(null !== value)
-			{
+			if(null !== value) {
 				var link = '<center><a href="' + value + '" target="_blank">' + img + '</a></center>';
 				$(container[0]).find('a,img,center').remove();
 				$(container[0]).append(link);
-			}
-			else
-			{
+			} else {
 				findA = $(container[0]).find('a');
 				findB = $(container[0]).find('center');
 				if(typeof findA !== 'undefined' && findA.length > 0){
