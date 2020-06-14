@@ -28,9 +28,9 @@
             
             $('.tooltip-editor').remove();
 
-            $('.editable-open, .editable').find('tbody > tr > td').popover('destroy');
+            $('.editable-open, .editable').find('tbody > tr > td').popover('dispose');
 
-            $($('.editable-open, .editable').find('tbody > tr > td > table > tbody > tr')).popover('destroy');
+            $($('.editable-open, .editable').find('tbody > tr > td > table > tbody > tr')).popover('dispose');
             
             $('*[data-toggle^="popover"]').each(function(){
                 $(this)  .removeAttr('data-toggle')
@@ -929,27 +929,46 @@
                             }
                             else
                                 url = '';
-                        
+
                         tooltip+="<div class='input-group'>\
-                            <span class='input-group-addon'><span class='glyphicon glyphicon-picture'></span></span>\
-                            <input type='text' value='" + src.trim() + "' class='form-control add-image' data-type='src' data-id='" + id + "' placeholder='Insert Image URL' >\
+                            <div class='input-group-prepend'>\
+                                <span class='input-group-text' id='input-group-computer'>\
+                                    <i class='fa fa-desktop' aria-hidden='true'></i>\
+                                </span>\
+                            </div>\
+                            <input type='file' value='" + src.trim() + "' class='form-control add-image' data-type='computer' data-id='" + id + "' placeholder='Upload from computer' aria-label='Upload from computer' aria-describedby='intput-groupcomputerc'>\
+                        </div>";
+                        
+                        tooltip+="<div class='br'></div>";
+
+                        tooltip+="<div class='input-group'>\
+                            <div class='input-group-prepend'>\
+                                <span class='input-group-text' id='input-group-src'>\
+                                    <i class='fa fa-picture-o' aria-hidden='true'></i>\
+                                </span>\
+                            </div>\
+                            <input type='text' value='" + src.trim() + "' class='form-control add-image' data-type='src' data-id='" + id + "' placeholder='Insert image SRC' aria-label='Insert image SRC' aria-describedby='intput-group-src'>\
                         </div>";
                         
                         tooltip+="<div class='br'></div>";
                         
                         tooltip+="<div class='input-group'>\
-                            <span class='input-group-addon'><span class='glyphicon glyphicon-link'></span></span>\
-                            <input type='text' value='" + url.trim() + "' class='form-control add-image' data-type='url' data-id='" + id + "' placeholder='Insert Image Link' >\
+                            <div class='input-group-prepend'>\
+                            <span class='input-group-text' id='input-group-url'>\
+                                    <i class='fa fa-picture-o' aria-hidden='true'></i>\
+                                </span>\
+                            </div>\
+                            <input type='text' value='" + url.trim() + "' class='form-control add-image' data-type='url' data-id='" + id + "' placeholder='Insert Image Link' aria-label='Insert Image Link' aria-describedby='intput-group-url' >\
                         </div>";
                         
                         tooltip+="<div class='br'></div>";
                         
                         tooltip+="<div class='text-left'>\
-                                    <button type='button' class='btn btn-default' id='CreateDynamicImage'>\
-                                        <span class='glyphicon glyphicon-picture'></span> Create Generic Image\
+                                    <button type='button' class='btn btn-secondary' id='CreateDynamicImage'>\
+                                        <i class='fa fa-picture-o'></i> Create Generic Image\
                                     </button> \
                                     <button type='button' class='btn btn-danger hidden' id='DeleteDynamicImage'>\
-                                        <span class='glyphicon glyphicon-remove'></span> Remove Generic Image\
+                                        <i class='fa fa-trash-o'></i> Remove Generic Image\
                                     </button>\
                             </div>";
                     break;
@@ -1339,13 +1358,15 @@
 		
 */
                             popoverElement.popover({
-                                container   : container,
+                                container   : 'body',
+                                // container   : container,
                                 placement   : placement,
                                 html        : true,
                                 delay       : 0,
                                 animation   : false,
+                                sanitize    : false,
                                 trigger     : 'manual',
-                                template    : '<div class="popover' + (['image','link'].indexOf(type) !== -1 ? ' popover-lg':'') + '" role="tooltip"><div class="arrow"></div><div class="popover-content"></div></div>'
+                                template    : '<div class="popover' + (['image','link'].indexOf(type) !== -1 ? ' popover-lg':'') + '" role="tooltip"><div class="arrow"></div><div class="popover-body"></div></div>'
                             }).popover('show');
                             
                             if(type == 'divider')
