@@ -963,17 +963,6 @@
                             </div>\
                             <input type='text' value='" + url.trim() + "' class='form-control add-image' data-type='url' data-id='" + id + "' placeholder='Insert Image Link' aria-label='Insert Image Link' aria-describedby='intput-group-url' >\
                         </div>";
-                        
-                        // tooltip+="<div class='br'></div>";
-                        
-                        // tooltip+="<div class='text-left'>\
-                        //             <button type='button' class='btn btn-secondary' id='CreateDynamicImage'>\
-                        //                 <i class='fa fa-picture-o'></i> Create Generic Image\
-                        //             </button> \
-                        //             <button type='button' class='btn btn-danger hidden' id='DeleteDynamicImage'>\
-                        //                 <i class='fa fa-trash-o'></i> Remove Generic Image\
-                        //             </button>\
-                        //     </div>";
                     break;
 
                     case 'link':
@@ -1324,9 +1313,7 @@
                         case 'link'     :
                         case 'image'    :
                             var popoverElement,
-                                is_head = ($('.editable-open').parents('#dd-head') ? true : false),
-                                placement = 'auto',
-                                container = '.editable-open';
+                                placement = 'auto';
                             
                             if(type == 'video') {
                                 popoverElement = $('.editable-open').find('tbody > tr > td:first-child');
@@ -1334,15 +1321,6 @@
                                 popoverElement = $($('.editable-open').find('tbody > tr > td > table > tbody > tr').get(1));
                             } else if(type == 'link' || type == 'image') {
                                 popoverElement = $('.editable-open > tbody > tr > td:first-child');
-                                // placement = 'bottom';
-                                
-                                if($('.editable-open').parents('#dd-footer')) {
-                                    container = '#dd-footer';
-                                } else if($('.editable-open').parents('#dd-head')) {
-                                    container = '#dd-head';
-                                } else if($('.editable-open').parents('#dd-body')) {
-                                    container = '#dd-body';
-                                }
                             }
                             
                             popoverElement
@@ -1359,7 +1337,6 @@
 
                             popoverElement.popover({
                                 container   : 'body',
-                                // container   : container,
                                 placement   : placement,
                                 html        : true,
                                 delay       : 0,
@@ -1397,37 +1374,6 @@
                                         'line-height':height[val]
                                     }).attr('data-size',val);								
                                 });
-                            } else if(type == 'image') {
-                                var image = $('#add-'+id),
-                                     image_original = image.attr('data-original'),
-                                     input = $('[data-remove^="' + id + '"]').find('[data-type^="src"]').val(),
-                                     buttonEdit = $("#CreateDynamicImage"),
-                                     buttonDelete = $("#DeleteDynamicImage");
-
-                                if(buttonEdit) buttonEdit.attr('data-id','add-'+id);
-                                if(buttonDelete) buttonDelete.attr('data-id','add-'+id);
-                                
-                                if(input && input.length>0) {
-                                    if(buttonEdit)
-                                        buttonEdit.removeClass('hidden');
-                                } else {
-                                    if(buttonEdit) {
-                                        buttonEdit.addClass('hidden');
-                                    }
-                                }
-
-                                if(image_original && image_original.length>0) {
-                                    if(buttonEdit) {
-                                        buttonEdit.html('<span class="glyphicon glyphicon-pencil"></span> Edit Generic Image').removeClass('hidden');
-                                    }
-                                    if(buttonDelete) {
-                                        buttonDelete.removeClass('hidden');
-                                    }
-                                } else {
-                                    if(buttonDelete) {
-                                        buttonDelete.addClass('hidden');
-                                    }
-                                }
                             }
                         break;
                     }
@@ -1473,71 +1419,6 @@
         }
     });
     
-    /**
-     CREATE DYNAMIC IMAGE EDITOR
-    **/
-    $(document).on('click touchstart', "#CreateDynamicImage", function(e){
-        e.preventDefault();
-        
-        var editor_id = $(this).attr('data-id'),
-            image = $("#"+editor_id),
-            image_original = image.attr('data-original'),
-            image_editor = image.attr('data-image-editor'),
-            image_update = image.attr('data-change'),
-            image_id = image.attr('id'),
-            src = (image_original ? image_original : image.attr('src').replace(/\b(\?\w+.*?)$/ig,'')),
-            editor_id = 'editor_' + $.rand(1000,9999) + $.rand(1000,9999) + $.rand(1000,9999);
-
-        $("body").append('<div id="img-editor-wrapper" class="text-center"><div class="close"><span class="glyphicon glyphicon-remove"></span></div><div id="img-editor-container" class="text-center">' + init.loader + '<br><strong>STARTING IMAGE EDITOR</strong><br>Please Wait...</div></div>').promise().done(function(){
-            
-                $.post( window.base + '/include/fetch-image.php', {
-                    id : window.session_id,
-                    base : window.base,
-                    url : src,
-                    option : 'save'
-                }).done(function(data){
-                    if(data.return!==true)
-                    {
-                        $('#img-editor-container').html(data.message);
-                    }
-                    else
-                    {
-                        if(image_update)
-                        {
-                            var html = $.base64_decode(image_update);
-                            $('#img-editor-container').html(html);
-                            $('#image-edit')
-                                .attr('data-id',image_id)
-                                .promise()
-                                .done(function(){
-                                    $("#img-editor").imageEditor();
-                                });
-                        }
-                        else
-                        {
-                            image.attr('data-original',src);
-                            $('#img-editor-container').load(window.base + '/themes/editor.html', function(){
-
-                                $('#image-edit')
-                                    .attr('src',data.src)
-                                    .attr('data-name',data.name)
-                                    .attr('data-id',image_id)
-                                    .promise()
-                                    .done(function(){
-                                        $("#img-editor").imageEditor().attr('data-image-editor',editor_id);
-                                        image.attr('data-image-editor',editor_id);
-                                    });
-                            });
-                        }
-                    }
-                }).fail(function(data, a, b){
-                    console.log(data);
-                    console.log(a);
-                    console.log(b);
-                });
-        });
-    });
-    
     /***
     for(var i in localStorage) {
         if(/editor_\d+/.test(i))
@@ -1546,44 +1427,6 @@
         }
     }
     ***/
-    
-    /* DELETE AND RESET IMAGE */
-    $(document).on('click touchstart', "#DeleteDynamicImage", function(e){
-        e.preventDefault();
-         var editor_id = $(this).attr('data-id'), 
-            image = $("#"+editor_id),
-             image_editor = image.attr('data-editor'),
-             image_original = image.attr('data-original'),
-             image_name = image.attr('data-name'),
-             image_update = image.attr('data-change'),
-            src = $('[data-type^="src"]');
-        
-        if(image_original && image_original.length > 0)
-        {
-            src.val(image_original);
-            image.attr('src',image_original);
-            image.attr('alt',image_original);
-            
-            $.storage(editor_id,null);
-            
-            $.post( window.base + '/include/fetch-image.php', {
-                clean : image_name,
-                option : 'clean'
-            }).done(function(data){
-                
-                if($("#DeleteDynamicImage"))
-                    $("#DeleteDynamicImage").addClass('hidden');
-                
-                if($("#CreateDynamicImage"))
-                    $("#CreateDynamicImage").html('<span class="glyphicon glyphicon-picture"></span> Create Generic Image');
-                
-                image.removeAttr('data-original');
-                image.removeAttr('data-editor');
-                image.removeAttr('data-name');
-                image.removeAttr('data-change');
-            });
-        }
-    });
 	
 	// Content Background
 	$(document).on('input change paste keyup','.edit-content',$.debounce(250,function(e){
@@ -1801,9 +1644,8 @@
 					maxHeight : h,
 				});
                 $("#loadNewImg").remove();
-                if($("#CreateDynamicImage"))
-                    $("#CreateDynamicImage").removeClass('hidden');
 			};
+
 			img.src = value;
 		
 		} else if(type == 'alt') {
