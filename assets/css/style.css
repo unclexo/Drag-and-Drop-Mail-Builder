@@ -740,12 +740,12 @@ html, body {
     cursor: pointer;
     z-index: 400;
     border: none;
-    -webkit-border-top-right-radius: 10px;
+/*    -webkit-border-top-right-radius: 10px;
     -webkit-border-bottom-right-radius: 10px;
     -moz-border-radius-topright: 10px;
     -moz-border-radius-bottomright: 10px;
     border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 10px;*/
     visibility: hidden;
 }
 
@@ -1303,18 +1303,24 @@ button, input[type='button'],
     background: #333;
 }
 
-.popover.bottom>.arrow:after {
+.popover.bs-popover-top>.arrow:after {
+    border-top-color: #333;
+}
+.popover.bs-popover-right>.arrow:after {
+    border-right-color: #333;
+}
+.popover.bs-popover-bottom>.arrow:after {
     border-bottom-color: #333;
 }
-.popover.top>.arrow:after {
-    border-top-color: #333;
+.popover.bs-popover-left>.arrow:after {
+    border-left-color: #333;
 }
 
 .popover-lg{
     max-width: 500px;
 }
 
-.popover-lg .popover-content{
+.popover-lg .popover-body{
     width: 490px;
     color:#fff;
 }
