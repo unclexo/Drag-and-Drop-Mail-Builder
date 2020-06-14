@@ -692,12 +692,12 @@ html, body {
 
 .editable:hover:after,
 .editable-open:after{
-	font-family: 'Glyphicons Halflings';
+	font-family: 'FontAwesome';
     text-align: center;
     position: absolute;
     background-color: #3FA9F5;
     color: #fff;
-    content: "\e068";
+    content: "\f0c9";
     top: -2px;
     left: -32px;
     width: 33px;
