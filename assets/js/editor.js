@@ -1645,7 +1645,7 @@
 		if(value == '' && type != 'alt')
 			value=null;
 
-		if(type == 'src'){
+		if(type == 'src') {
 			if('' !== value && null !== value && $.isVideo(value) && (e.type === 'keyup' ? (e.keyCode != 8 ? true : false) : true))
 			{
 				if($.urlExists(value))
@@ -1732,7 +1732,7 @@
 						img.height = (img.width / ( 16 / 9 ));
 						img.src = url;
 						img.align = 'middle';
-						img.class = 'img-responsive';
+						img.class = 'img-fluid';
 						img.style.width = '100%';
 						img.style.maxWidth = '600px';
 						
@@ -1796,7 +1796,7 @@
 			
 			/* Setup image width and height */
 			var img = new Image();
-			img.onload = function(){
+			img.onload = function() {
 				var w = this.width, h = this.height;
 				$('#add-' + id ).css({
 					width : 100 + '%',
