@@ -1315,6 +1315,9 @@ button, input[type='button'],
 .popover.bs-popover-left>.arrow:after {
     border-left-color: #333;
 }
+.popover.bs-popover-auto>.arrow:after {
+    border-left-color: #333;
+}
 
 .popover-lg{
     max-width: 500px;
