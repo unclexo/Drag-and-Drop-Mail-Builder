@@ -742,14 +742,18 @@
         
         MediumEditorHook.clean();
 	});
-    
-
 
 	// Edit Content
-	$(document).on('click touchstart','.editable, .editable-open',function(e){
+	$(document).on('click touchstart','.editable, .editable-open',function(e) {
         
-        if ($(e.target).is('.glyphicon-pencil') || $(e.target).is('.edit') || $(e.target).is('.editable') || $(e.target).is('.editable-open') || $(e.target).is('.overly'))
-		{
+        if (
+            $(e.target).is('.fa-pencil') || 
+            $(e.target).is('.edit') || 
+            $(e.target).is('.editable') || 
+            $(e.target).is('.editable-open') || 
+            $(e.target).is('.overly')
+        ) {
+
 			e.preventDefault();
             
             // .editable-content | .ready-for-edit
@@ -766,7 +770,6 @@
             
 			$('.editable-open').addClass('editable').removeClass('editable-open');
             
-
 			var $this = $(this),
 				type = $this.attr('data-edit'),
 				id = type + '-' + Math.floor(Date.now() / 1000),
@@ -787,12 +790,11 @@
 
             $('.editable-open').parents('.ui-sortable').sortable({ disabled: true });
             
-			if(['content','image','link','quote','title','divider','video'].indexOf(type) > -1 && openEditor)
-			{
+			if(['content','image','link','quote','title','divider','video'].indexOf(type) > -1 && openEditor) {
+
 				data = data.replace(/(<button.*?>.*?<\/button>)/g,'');
                 
-				switch(type)
-                {
+				switch(type) {
                     case 'content':
                        $editor.buttons = [{
                             name: 'bold',
@@ -858,8 +860,7 @@
                         
                         $editor.cleanTags = ['meta', 'img', 'div', 'form', 'input', 'select', 'textarea', 'blockquote', 'link', 'script'];
                     break;
-                    
-                    
+
                     case 'title':
                         $editor.buttons = [{
                             name: 'bold',
@@ -906,7 +907,7 @@
                     ];
                         $editor.cleanTags = ['meta', 'img', 'div', 'form', 'input', 'select', 'textarea', 'blockquote', 'link', 'script', 'p', 'code', 'ul', 'li', 'ol', 'dd', 'dl', 'pre', 'sub', 'sup'];
                     break;
-                        
+
                     case 'image':
 
                             $this.find('img').attr('id','add-'+id);
@@ -915,20 +916,22 @@
                             if(null !== src)
                                 src = src[0].replace(/<img.*?src="(.*?)".*?>/i,'$1').replace(/(\?h\=[0-9]+)/i,'');
 
-                            if(!(/(https?|ftps?)/g.test(src)))
+                            if(!(/(https?|ftps?)/g.test(src))) {
                                 src = '';
+                            }
 
                             link = $this.html();
 
-                            if(/<a.*?href="(.*?)".*?\/a>/g.test(link)){
+                            if(/<a.*?href="(.*?)".*?\/a>/g.test(link)) {
                                 url = link.match(/<a.*?href="(.*?)".*?\/a>/i);
-                                if(null !== url)
+                                if(null !== url) {
                                     url = url[0].replace(/<a.*?href="(.*?)".*?\/a>/i,'$1');
-                                else
+                                } else {
                                     url = '';
-                            }
-                            else
+                                }
+                            } else {
                                 url = '';
+                            }
 
                         tooltip+="<div class='input-group'>\
                             <div class='input-group-prepend'>\
@@ -972,65 +975,66 @@
                         //             </button>\
                         //     </div>";
                     break;
-                        
-                        
+
                     case 'link':
 
                             $this.find('a').attr('id','add-'+id);
 
                             data = $this.find('a').parent().html();
 
-                            if(/<a.*?href="(.*?)".*?\/a>/g.test(data))
+                            if(/<a.*?href="(.*?)".*?\/a>/g.test(data)) {
                                 href = data.replace(/<a.*?href="(.*?)".*?\/a>/g,function(a,b){
                                     return b;
                                 });
-                            else
+                            } else {
                                 href = '';
+                            }
 
-                            if(/<a.*?alt="(.*?)".*?\/a>/g.test(data))
+                            if(/<a.*?alt="(.*?)".*?\/a>/g.test(data)) {
                                 alt = data.replace(/<a.*?alt="(.*?)".*?\/a>/g,function(a,b){
                                     return b;
                                 });
-                            else
+                            } else {
                                 alt = '';
+                            }
 
                             content = data.replace(/<a.*?>(.*?)<\/a>/g,function(a,b){
                                 return b;
                             });
 
-                            if(/<a.*?data-color="(.*?)".*?\/a>/g.test(data))
+                            if(/<a.*?data-color="(.*?)".*?\/a>/g.test(data)) {
                                 color = data.replace(/<a.*?data-color="(.*?)".*?\/a>/g,function(a,b){
                                     return b;
                                 });
-                            else
+                            } else {
                                 color = '#337ab7';
+                            }
 
-                            if(/<a.*?data-align="(.*?)".*?\/a>/g.test(data))
-                            {
+                            if(/<a.*?data-align="(.*?)".*?\/a>/g.test(data)) {
                                 align = data.replace(/<a.*?data-align="(.*?)".*?\/a>/g,function(a,b){
                                     return b;
                                 });
                                 align = align.replace(/[^0-9]/ig,'');
-                            }
-                            else
+                            } else {
                                 align = '1';
+                            }
 
-                            if(/<a.*?data-size="(.*?)".*?\/a>/g.test(data))
-                            {
+                            if(/<a.*?data-size="(.*?)".*?\/a>/g.test(data)) {
                                 size = data.replace(/<a.*?data-size="(.*?)".*?\/a>/g,function(a,b){
                                     return b;
                                 });
                                 size = size.replace(/[^0-9]/ig,'');
-                            }
-                            else
+                            } else {
                                 size = '3';
+                            }
 
-                            if(/<a.*?data-background="(.*?)".*?\/a>/g.test(data))
+                            if(/<a.*?data-background="(.*?)".*?\/a>/g.test(data)) {
                                 background = data.replace(/<a.*?data-background="(.*?)".*?\/a>/g,function(a,b){
                                     return b;
                                 });
-                            else
+                            } else {
                                 background = 'transparent';
+                            }
                         
                         tooltip+="<div class='input-group'>\
                             <span class='input-group-addon'><span class='glyphicon glyphicon-link'></span></span>\
@@ -1116,16 +1120,15 @@
                         
                         tooltip+="<div class='br'></div>";
                         
-                    break;                        
-                        
+                    break;
                         
                     case 'divider':
                         var bColor = data.match(/data-border-color=\"(.*?)\"/g);
                         if(null !== bColor){
                             bColor = bColor[0].replace(/data-border-color=\"(.*?)\"/g,'$1');
-                        }
-                        else
+                        } else {
                             bColor = '#cccccc';
+                        }
 
                         tooltip+="<div class='input-group colorpicker-component'>\
                             <input type='text' value='" + bColor.trim() + "' class='form-control add-divider' data-type='border-color' data-id='" + id + "' >\
@@ -1133,8 +1136,7 @@
                         </div>";
                         
                     break;
-                        
-                        
+
                     case 'video':
                             $this.find('img').attr('id','add-'+id);
 						
@@ -1168,8 +1170,7 @@
                 }
                 
                 /* PROCESSED */
-                switch(type)
-                {
+                switch(type) {
                     case 'content':
                     case 'title':
                         var currentTextSelection;
@@ -1201,23 +1202,23 @@
                                 //use our own handleClick instead of the default one
                                 this.on(this.button, 'click', this.handleClick.bind(this));
                             },
-                             handleClick: function (event) {
-                                 //keeping record of the current text selection
-                                 currentTextSelection = textEditor.exportSelection();
+                            handleClick: function (event) {
+                                //keeping record of the current text selection
+                                currentTextSelection = textEditor.exportSelection();
 
-                                 //sets the color of the current selection on the color picker
-                                 $(this.button).spectrum("set", getCurrentTextColor());
+                                //sets the color of the current selection on the color picker
+                                $(this.button).spectrum("set", getCurrentTextColor());
 
-                                 //from here on, it was taken form the default handleClick
-                                 event.preventDefault();
-                                 event.stopPropagation();
+                                //from here on, it was taken form the default handleClick
+                                event.preventDefault();
+                                event.stopPropagation();
 
-                                 var action = this.getAction();
+                                var action = this.getAction();
 
-                                 if (action) {
-                                     this.execAction(action);
-                                 }
-                             }
+                                if (action) {
+                                    this.execAction(action);
+                                }
+                            }
                         });
 
                         var pickerExtension = new ColorPickerExtension();
@@ -1316,10 +1317,8 @@
                     return str;
                 }
                 */
-                if(!$.empty(tooltip))
-                {                    
-                    switch(type)
-                    {
+                if(!$.empty(tooltip)) {               
+                    switch(type) {
                         case 'divider'  :
                         case 'video'    :
                         case 'link'     :
@@ -1329,34 +1328,35 @@
                                 placement = 'auto',
                                 container = '.editable-open';
                             
-                            if(type == 'video'){
+                            if(type == 'video') {
                                 popoverElement = $('.editable-open').find('tbody > tr > td:first-child');
-                            }else if(type == 'divider'){
+                            } else if(type == 'divider') {
                                 popoverElement = $($('.editable-open').find('tbody > tr > td > table > tbody > tr').get(1));
-                            }else if(type == 'link' || type == 'image'){
+                            } else if(type == 'link' || type == 'image') {
                                 popoverElement = $('.editable-open > tbody > tr > td:first-child');
-                            //    placement = 'bottom';
+                                // placement = 'bottom';
                                 
-                                if($('.editable-open').parents('#dd-footer'))
+                                if($('.editable-open').parents('#dd-footer')) {
                                     container = '#dd-footer';
-                                else if($('.editable-open').parents('#dd-head'))
+                                } else if($('.editable-open').parents('#dd-head')) {
                                     container = '#dd-head';
-                                else if($('.editable-open').parents('#dd-body'))
+                                } else if($('.editable-open').parents('#dd-body')) {
                                     container = '#dd-body';
+                                }
                             }
                             
                             popoverElement
                                 .attr('data-container','.editable-open')
                                 .attr('data-toggle','popover')
                                 .attr('data-content',tooltip);
-/*
-		
-		1. Check if is inside dd-head
-		2. Check is editable-open only one or first child
-		4. If 1. or 2. is TRUE, move popover at the bottom
-		5. For all others popover must be above content
-		
-*/
+
+                            /*	
+                    		1. Check if is inside dd-head
+                    		2. Check is editable-open only one or first child
+                    		4. If 1. or 2. is TRUE, move popover at the bottom
+                    		5. For all others popover must be above content
+                            */
+
                             popoverElement.popover({
                                 container   : 'body',
                                 // container   : container,
@@ -1369,10 +1369,9 @@
                                 template    : '<div class="popover' + (['image','link'].indexOf(type) !== -1 ? ' popover-lg':'') + '" role="tooltip"><div class="arrow"></div><div class="popover-body"></div></div>'
                             }).popover('show');
                             
-                            if(type == 'divider')
+                            if(type == 'divider') {
                                 $('.colorpicker-component, .colorpicker-component input').colorpicker();
-                            else if(type == 'link')
-                            {
+                            } else if(type == 'link') {
                                 $('.colorpicker-component, .colorpicker-component input').colorpicker();
 
                                 $("#link-position").bootstrapSlider().on("slide slideStop", function(slideEvt) {
@@ -1398,9 +1397,7 @@
                                         'line-height':height[val]
                                     }).attr('data-size',val);								
                                 });
-                            }
-                            else if(type == 'image')
-                            {
+                            } else if(type == 'image') {
                                 var image = $('#add-'+id),
                                      image_original = image.attr('data-original'),
                                      input = $('[data-remove^="' + id + '"]').find('[data-type^="src"]').val(),
@@ -1410,28 +1407,26 @@
                                 if(buttonEdit) buttonEdit.attr('data-id','add-'+id);
                                 if(buttonDelete) buttonDelete.attr('data-id','add-'+id);
                                 
-                                if(input && input.length>0)
-                                {
+                                if(input && input.length>0) {
                                     if(buttonEdit)
                                         buttonEdit.removeClass('hidden');
-                                }
-                                else
-                                {
-                                    if(buttonEdit)
+                                } else {
+                                    if(buttonEdit) {
                                         buttonEdit.addClass('hidden');
+                                    }
                                 }
 
-                                if(image_original && image_original.length>0)
-                                {
-                                    if(buttonEdit)
+                                if(image_original && image_original.length>0) {
+                                    if(buttonEdit) {
                                         buttonEdit.html('<span class="glyphicon glyphicon-pencil"></span> Edit Generic Image').removeClass('hidden');
-                                    if(buttonDelete)
+                                    }
+                                    if(buttonDelete) {
                                         buttonDelete.removeClass('hidden');
-                                }
-                                else
-                                {
-                                    if(buttonDelete)
+                                    }
+                                } else {
+                                    if(buttonDelete) {
                                         buttonDelete.addClass('hidden');
+                                    }
                                 }
                             }
                         break;
