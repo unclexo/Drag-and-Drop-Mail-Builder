@@ -729,7 +729,7 @@ html, body {
     position: absolute;
     background-color: #3FA9F5;
     color: #fff;
-    top: 0px;
+    bottom: 0px;
     right: 0px;
     width: 74px;
     height: 36px;
