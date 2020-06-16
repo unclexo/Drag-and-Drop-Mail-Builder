@@ -1026,86 +1026,76 @@
                             }
                         
                         tooltip+="<div class='input-group'>\
-                            <span class='input-group-addon'><span class='glyphicon glyphicon-link'></span></span>\
+                              <div class='input-group-prepend'>\
+                                <span class='input-group-text'>\
+                                    <i class='fa fa-link'></i>\
+                                </span>\
+                              </div>\
                             <input type='text' value='" + href.trim() + "' class='form-control add-link' data-type='url' data-id='" + id + "' placeholder='http://' >\
                         </div>";
                         
                         tooltip+="<div class='br'></div>";
                         
                         tooltip+="<div class='input-group'>\
-                            <span class='input-group-addon'><span class='glyphicon glyphicon-text-size'></span></span>\
-                            <input type='text' value='" + content.trim() + "' class='form-control add-link' data-type='text' data-id='" + id + "' placeholder='Link Title' >\
+                                <div class='input-group-prepend'>\
+                                    <span class='input-group-text'>\
+                                        <i class='fa fa-text-width'></i>\
+                                    </span>\
+                                </div>\
+                                <input type='text' value='" + content.trim() + "' class='form-control add-link' data-type='text' data-id='" + id + "' placeholder='Link Title' >\
                         </div>";
                         
                         tooltip+="<div class='br'></div>";
                         
-                        tooltip+="<div class='form-horizontal'>\
-                            <div class='form-group'>\
-                                <label for='color' class='col-sm-6 control-label'>Color:</label>\
-                                <div class='col-sm-6 text-right'>\
-                                    <div class='input-group colorpicker-component'>\
-                                        <input type='text' value='" + color.trim() + "' class='form-control add-link' data-type='color' data-id='" + id + "' >\
-                                        <span class='input-group-addon'><i></i></span>\
-                                    </div>\
+                        tooltip+="<div class='form-group'>\
+                                <label for='color'>Color: </label>\
+                                <div class='input-group colorpicker-component'>\
+                                    <input type='text' value='" + color.trim() + "' class='form-control add-link' data-type='color' data-id='" + id + "' >\
+                                    <span class='input-group-addon'><i></i></span>\
                                 </div>\
-                            </div>\
-                        </div>";
+                            </div>";
                         
                         tooltip+="<div class='br'></div>";
                         
-                        tooltip+="<div class='form-horizontal'>\
-                            <div class='form-group'>\
-                                <label for='link-background' class='col-sm-6 control-label'>Background:</label>\
-                                <div class='col-sm-6 text-right'>\
-                                    <div class='input-group colorpicker-component'>\
-                                        <input type='text' value='" + background.trim() + "' class='form-control add-link' data-type='background' data-id='" + id + "' >\
-                                        <span class='input-group-addon'><i></i></span>\
-                                    </div>\
+                        tooltip+="<div class='form-group'>\
+                                <label for='link-background'>Background: </label>\
+                                <div class='input-group colorpicker-component'>\
+                                    <input type='text' value='" + background.trim() + "' class='form-control add-link' data-type='background' data-id='" + id + "' >\
+                                    <span class='input-group-addon'><i></i></span>\
                                 </div>\
-                            </div>\
-                        </div>";
+                            </div>";
                         
                         tooltip+="<div class='br'></div>";
                         
-                        tooltip+="<div class='form-horizontal'>\
-                            <div class='form-group'>\
-                                <label for='link-position' class='col-sm-6 control-label'>Position:</label>\
-                                <div class='col-sm-6 text-right'>";
-                                tooltip+="<div class='input-group colorpicker-component'>";
-                                    tooltip+="<input type='text' data-provide='slider' id='link-position' data-type='position'";
-                                     tooltip+=" data-slider-ticks='[1, 2, 3]'";
-                                     tooltip+=" data-slider-ticks-labels='[\\\"left\\\", \\\"center\\\", \\\"right\\\"]'";
-                                     tooltip+=" data-slider-min='1'";
-                                     tooltip+=" data-slider-max='3'";
-                                     tooltip+=" data-slider-step='1'";
-                                     tooltip+=" data-slider-value='" + align + "'";
-                                     tooltip+=" data-slider-tooltip='hide'>";
-                                tooltip+='</div>';
-                            tooltip+="</div>\
-                                </div>\
-                            </div>\
-                        </div>";
+                        tooltip+="<div class='form-group'>\
+                                <label for='link-position'>Position: </label>";
+                                tooltip+="<div class='input-group colorpicker-component pl-2'>";
+                                tooltip+="<input type='text' data-provide='slider' id='link-position' data-type='position'";
+                                tooltip+=" data-slider-ticks='[1, 2, 3]'";
+                                tooltip+=" data-slider-ticks-labels='[\\\"left\\\", \\\"center\\\", \\\"right\\\"]'";
+                                tooltip+=" data-slider-min='1'";
+                                tooltip+=" data-slider-max='3'";
+                                tooltip+=" data-slider-step='1'";
+                                tooltip+=" data-slider-value='" + align + "'";
+                                tooltip+=" data-slider-tooltip='hide'>";
+                                tooltip+="</div>";
+                        tooltip+="</div>";
                         
                         tooltip+="<div class='br'></div>";
                         
-                        tooltip+="<div class='form-horizontal'>\
-                            <div class='form-group'>\
-                                <label for='link-size' class='col-sm-6 control-label'>Size:</label>\
-                                <div class='col-sm-6 text-right'>";
-                                tooltip+="<div class='input-group colorpicker-component'>";
-                                    tooltip+="<input type='text' data-provide='slider' id='link-size' data-type='position'";
-                                     tooltip+=" data-slider-ticks='[1, 2, 3, 4, 5, 6, 7]'";
-                                     tooltip+=" data-slider-ticks-labels='[\\\"8pt\\\", \\\"10pt\\\", \\\"12pt\\\", \\\"14pt\\\", \\\"18pt\\\", \\\"24pt\\\", \\\"36pt\\\"]'";
-                                     tooltip+=" data-slider-min='1'";
-                                     tooltip+=" data-slider-max='3'";
-                                     tooltip+=" data-slider-step='1'";
-                                     tooltip+=" data-slider-value='" + size + "'";
-                                     tooltip+=" data-slider-tooltip='hide'>";
-                                tooltip+='</div>';
-                            tooltip+="</div>\
-                                </div>\
-                            </div>\
-                        </div>";
+                        tooltip+="<div class='form-group'>\
+                                <label for='link-size'>Size: </label>";
+                                tooltip+="<div class='input-group colorpicker-component pl-2'>";
+                                tooltip+="<input type='text' data-provide='slider' id='link-size' data-type='position'";
+                                tooltip+=" data-slider-ticks='[1, 2, 3, 4, 5, 6, 7]'";
+                                tooltip+=" data-slider-ticks-labels='[\\\"8pt\\\", \\\"10pt\\\", \\\"12pt\\\", \\\"14pt\\\", \\\"18pt\\\", \\\"24pt\\\", \\\"36pt\\\"]'";
+                                tooltip+=" data-slider-min='1'";
+                                tooltip+=" data-slider-max='3'";
+                                tooltip+=" data-slider-step='1'";
+                                tooltip+=" data-slider-value='" + size + "'";
+                                tooltip+=" data-slider-tooltip='hide'>";
+                                tooltip+="</div>";
+                        tooltip+="</div>";
                         
                         tooltip+="<div class='br'></div>";
                         
@@ -1343,7 +1333,7 @@
                                 animation   : false,
                                 sanitize    : false,
                                 trigger     : 'manual',
-                                template    : '<div class="popover' + (['image','link'].indexOf(type) !== -1 ? ' popover-lg':'') + '" role="tooltip"><div class="arrow"></div><div class="popover-body"></div></div>'
+                                template    : '<div class="popover' + (['image','link'].indexOf(type) !== -1 ? ' popover-lg':'') + '" role="tooltip"><div class="popover-body"></div></div>'
                             }).popover('show');
                             
                             if(type == 'divider') {
