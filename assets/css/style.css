@@ -1407,3 +1407,11 @@ button, input[type='button'],
     font-size: 13px;
     line-height: 13px;
 }
+
+.colorpicker-element .add-on i, .colorpicker-element .input-group-addon i {
+    display: inline-block;
+    cursor: pointer;
+    height: 38px !important;
+    vertical-align: top !important;
+    width: 26px !important;
+}
