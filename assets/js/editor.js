@@ -1036,7 +1036,7 @@
                         
                         tooltip+="<div class='br'></div>";
                         
-                        tooltip+="<div class='input-group'>\
+                        tooltip+="<div class='input-group mb-3'>\
                                 <div class='input-group-prepend'>\
                                     <span class='input-group-text'>\
                                         <i class='fa fa-text-width'></i>\
