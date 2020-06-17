@@ -170,7 +170,9 @@ function include_style(string $url, string $version='', string $path=''){
     
     <title>MAIL EDITOR</title>
 
-    <?=include_style('assets/css/bootstrap.min.css'); ?>
+    <?php // echo include_style('assets/css/bootstrap.min.css'); ?>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<?=include_style('assets/css/bootstrap-colorpicker.min.css'); ?>
     <?=include_style('assets/css/bootstrap-slider.min.css'); ?>
@@ -187,6 +189,7 @@ function include_style(string $url, string $version='', string $path=''){
   </head>
   <body>
     <div class="container-fullscreen">
+
     	<div class="container text-center">
         	<div id="choose-template" class="text-center hidden">
                 <button class="choose" type="button" data-id="no-sidebar"><img src="assets/img/no-sidebar.jpg" class="img-responsive" alt=""><span>No Sidebar (wide)</span></button>
@@ -195,9 +198,11 @@ function include_style(string $url, string $version='', string $path=''){
                 <button class="choose" type="button" data-id="both-sidebar"><img src="assets/img/both-sidebar.jpg" class="img-responsive" alt=""><span>Both Sidebars</span></button>
             </div>
         </div>
+
         <div class="container-content hidden" id="mail-template">
             Content
         </div>
+
         <div class="container-sidebar hidden" id="option-tabs">
 
             <div id="get-options" class="text-center">
@@ -205,7 +210,6 @@ function include_style(string $url, string $version='', string $path=''){
             <!--    <div class="get-options choose" data-id="title" id="title"><span class="glyphicon glyphicon-text-size"></span><div>Heading</div></div>  -->
                 <div class="get-options choose" data-id="content" id="content"><span class="glyphicon glyphicon-list-alt"></span><div>Text</div></div>
                 <div class="get-options choose" data-id="image" id="image"><span class="glyphicon glyphicon-picture"></span><div>Image</div></div>
-                <div class="get-options choose" data-id="video" id="video"><span class="glyphicon glyphicon-play"></span><div>Video</div></div>
                 <div class="get-options choose" data-id="link" id="link"><span class="glyphicon glyphicon-link"></span><div>Link</div></div>
                 <div class="get-options choose" data-id="divider" id="divider"><span class="glyphicon glyphicon-minus"></span><div>Divider</div></div>
             <!--    <div class="get-options choose" data-id="quote" id="quote"><span class="glyphicon glyphicon-comment"></span><div>Blockquote</div></div> -->
@@ -215,7 +219,9 @@ function include_style(string $url, string $version='', string $path=''){
             
         </div>
     </div>
+
 	<div id="modal" class="reset-this"></div>
+
     <button class="btn btn-lg btn-success btn-materialize btn-left-bottom btn-left-bottom-1 hidden" type="button" id="preview" title="Preview" data-toggle="tooltip" data-placement="top" data-trigger="hover"><span class="glyphicon glyphicon-zoom-in"></span></button>
       
     <form method="post" enctype="multipart/form-data" class="btn btn-lg btn-primary btn-materialize btn-left-bottom btn-left-bottom-2 hidden" type="button" id="attachment" title="Attachment 7Mb Max" data-toggle="tooltip" data-placement="top" data-trigger="hover"><span class="glyphicon glyphicon-paperclip"></span><input type="file" name="attachment[]"></form>
@@ -379,10 +385,18 @@ function include_style(string $url, string $version='', string $path=''){
             </div>
         </div>
     </div>
+
     <script src="https://use.fontawesome.com/86c8941095.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    
+    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
     <script src="assets/js/bootbox.min.js"></script>
     <script src="assets/js/debounce.js"></script>
     <script src="assets/js/bootstrap-colorpicker.min.js"></script>
@@ -391,7 +405,7 @@ function include_style(string $url, string $version='', string $path=''){
     <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
     <?=include_script('assets/js/creative.tools.js'); ?>
 	<?=include_script('assets/js/html2canvas.js'); ?>
-	<?=include_script('assets/js/image-edit.js'); ?>
 	<?=include_script('assets/js/editor.js'); ?>
+
   </body>
 </html>
