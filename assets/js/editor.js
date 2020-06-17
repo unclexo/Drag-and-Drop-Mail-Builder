@@ -790,7 +790,7 @@
 
             $('.editable-open').parents('.ui-sortable').sortable({ disabled: true });
             
-			if(['content','image','link','quote','title','divider','video'].indexOf(type) > -1 && openEditor) {
+			if(['content','image','link','quote','title','divider'].indexOf(type) > -1 && openEditor) {
 
 				data = data.replace(/(<button.*?>.*?<\/button>)/g,'');
                 
@@ -1115,37 +1115,6 @@
                         </div>";
                         
                     break;
-
-                    case 'video':
-                            $this.find('img').attr('id','add-'+id);
-						
-                            src = $this.find('tr > td[data-video]').attr('data-video');
-                            if(null === src)
-                                src = '';
-
-                            if(!(/(https?|ftps?)/g.test(src)))
-                                src = '';
-
-                            link = $this.html();
-
-                            if(/<a.*?href="(.*?)".*?\/a>/g.test(link)){
-                                url = link.match(/<a.*?href="(.*?)".*?\/a>/i);
-                                if(null !== url)
-                                    url = url[0].replace(/<a.*?href="(.*?)".*?\/a>/i,'$1');
-                                else
-                                    url = '';
-                            }
-                            else
-                                url = '';
-                        
-                        
-                        tooltip += "<div class='input-group'>\
-                            <span class='input-group-addon'>\
-                                <span class='glyphicon glyphicon-link'></span>\
-                            </span>\
-                            <input type='text' class='form-control add-video' placeholder='Insert Video URL' value='" + $.trim(src) + "' data-type='src' data-id='" + id + "'>\
-                        </div>";
-                    break;
                 }
                 
                 /* PROCESSED */
@@ -1299,15 +1268,12 @@
                 if(!$.empty(tooltip)) {               
                     switch(type) {
                         case 'divider'  :
-                        case 'video'    :
                         case 'link'     :
                         case 'image'    :
                             var popoverElement,
                                 placement = 'auto';
                             
-                            if(type == 'video') {
-                                popoverElement = $('.editable-open').find('tbody > tr > td:first-child');
-                            } else if(type == 'divider') {
+                            if(type == 'divider') {
                                 popoverElement = $($('.editable-open').find('tbody > tr > td > table > tbody > tr').get(1));
                             } else if(type == 'link' || type == 'image') {
                                 popoverElement = $('.editable-open > tbody > tr > td:first-child');
@@ -1458,140 +1424,6 @@
 		if(type=='border-color'){
 			$('.editable-open table tr:nth-child(2) td' ).css('border-top','1px solid '+value);
 			$('.editable-open table' ).attr('data-border-color',value);
-		}
-	}));
-	
-	// Update Video
-	$(document).on('change paste keyup','.add-video',$.debounce(350,function(e){
-		
-		var $this = $(this),
-			id = $this.attr('data-id'),
-			type = $(this).attr('data-type'),
-			value = $(this).val().trim(),
-			main = $('.editable-open').find('tr > td');
-		
-		if(value == '' && type != 'alt')
-			value=null;
-
-		if(type == 'src') {
-			if('' !== value && null !== value && $.isVideo(value) && (e.type === 'keyup' ? (e.keyCode != 8 ? true : false) : true))
-			{
-				if($.urlExists(value))
-				{
-					var i = 0, frame = 5, video = document.createElement("video"), imgWidth = main.find("img").width();
-					
-					video.addEventListener('loadeddata', function() {
-						video.currentTime = i;
-					}, false);
-					
-					video.addEventListener('seeked', function() {
-						i++
-						// Get image from certain frame
-						if (i === frame) {
-							// now video has seeked and current frames will show
-							// at the time as we expect
-							var canvas = generateThumbnail(i);
-	
-						}
-						// if we are not passed end, seek to next interval
-						else
-						{
-							// this will trigger another seeked event
-							video.currentTime = i;
-						}
-					}, false);
-					
-					video.preload = "auto";
-					video.src = value;
-					
-					function isCanvasBlank(canvas) {
-						var blank = document.createElement('canvas');
-						blank.width = canvas.width;
-						blank.height = canvas.height;
-						
-						return canvas.toDataURL() == blank.toDataURL();
-					}
-					
-					function generateThumbnail() {
-						main.find("canvas").remove();
-						var c = document.createElement("canvas"),
-							ctx = c.getContext("2d"),
-							play = new Image();
-						c.id = 'canvas';
-						c.width = 600;
-						c.height = (c.width / ( 16 / 9 ));						
-						
-						//ctx.drawImage(video, 0, 0, c.width, c.height);
-						
-						play.onload = function(){
-							ctx.drawImage(video, 0, 0, c.width, c.height);
-							ctx.drawImage(this,
-								c.width / 2 - this.width / 2,
-								c.height / 2 - this.height / 2
-							);
-							
-							
-							try {
-								setTimeout(function(){
-									main.get(0).appendChild(c);
-									
-									main.find("img").remove();
-									
-									var dataUrl=c.toDataURL("image/png");
-									generateImage(dataUrl, imgWidth, value);
-									main.attr('data-video', value);
-								},30);
-							}
-							catch(err) {
-								console.log("WARNING: Image is not crated.");
-							}
-						};
-						play.src = window.base + '/assets/img/play_button.png';
-						
-						
-						
-						return c;
-					}
-					
-					function generateImage(url, width, link){
-						var img = new Image();
-						img.crossOrigin = "Anonymous";
-						img.width = width;
-						img.height = (img.width / ( 16 / 9 ));
-						img.src = url;
-						img.align = 'middle';
-						img.class = 'img-fluid';
-						img.style.width = '100%';
-						img.style.maxWidth = '600px';
-						
-						var a = document.createElement("a");
-						a.href=link;
-						a.target = '_blank';
-						a.rel = 'nofollow';
-						a.style.width = '100%';
-						a.appendChild(img);
-						
-						main.html(init.tooltips);
-						main.get(0).appendChild(a);
-					}
-				}
-				else
-				{
-					$.get(window.base + '/themes/form-video.html').done(function(html){
-						main.html(init.tooltips + html);
-						stop = false;
-						main.attr('data-video', '');
-					});
-				}
-			}
-			else
-			{
-				$.get(window.base + '/themes/form-video.html').done(function(html){
-					main.html(init.tooltips + html);
-					stop = false;
-					main.attr('data-video', '');
-				});
-			}
 		}
 	}));
 	
@@ -1757,26 +1589,28 @@
 			large		: true,
 			class		: 'modal-preview'
 		},
-		function($this){
+		function($this) {
+
 			$("#modal #dd-body-background").css({
 				height:'',
 			});
 			
-			setTimeout(function(){
+			setTimeout(function() {
 				var RD = $("#modal #dd-body-background table[data-edit]") || [],
 					RDmax = RD.length,
 					IR = $("#modal #dd-body-background img") || [],
 					IRmax = IR.length,
 					RE = $("#modal #dd-head, #modal #dd-body, #modal #dd-footer, #modal #dd-sidebar-left, #modal #dd-sidebar-right"),
 					REmax = RE.length;
+
 				$('#modal #dd-body-background .overly').remove();
 				
-				for(i=0; i < RDmax; i++)
-				{
+				for(i = 0; i < RDmax; i++) {
 					
 					$(RD[i]).css({
 						width : $(RD[i]).parent().width() + 'px'
 					});
+
 					$(RD[i]).find('tr > td').css({
 						padding:'15px 15px'
 					});
@@ -1786,8 +1620,8 @@
 					});
 				}
 				
-				for(j=0; j < IRmax; j++)
-				{
+				for(j = 0; j < IRmax; j++) {
+
 					$(IR[j]).css({
 						width : '100%',
 						height : 'auto'
@@ -1795,19 +1629,18 @@
 					.removeAttr('class');
 				}
 				
-				for(r=0; r < REmax; r++)
-				{
+				for(r = 0; r < REmax; r++) {
 					var rem = $(RE[r]).html().trim();
-					if(rem == '')
+					if(rem == '') {
 						$(RE[r]).remove();
+                    }
 				}
 				
-				setTimeout(function(){
+				setTimeout(function() {
 					var AE = $("#modal .modal-body *"),
 						AEmax = AE.length;
 				
-					for(k=0; k < AEmax; k++)
-					{
+					for(k=0; k < AEmax; k++) {
 						$(AE[k])
 							.removeAttr('class')
 							.removeAttr('data-edit')
@@ -1815,8 +1648,9 @@
 					}
 					
 					$button.prop('disabled',false);
-				},50);
-			},200);
+				}, 50);
+
+			}, 200);
 		});
 	});
 	

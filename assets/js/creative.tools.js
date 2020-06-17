@@ -1814,8 +1814,8 @@ $.fn.createModal = function (options, callback) {
 			'<div class="modal-dialog'+(s.large?' modal-lg':'')+'">'+
 				'<div class="modal-content">'+
 					'<div class="modal-header">'+
-						(s.close===true?'<button type="button" class="btn btn-danger" style="float:right; font-size:13px; padding:5px 8px" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>':'')+
-						( s.header!="" ? '<h4>'+s.header+'</h4>' : '' )+
+						(s.header!="" ? '<h5 class="m-0">'+s.header+'</h5>' : '' )+
+						(s.close===true?'<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i></button>':'')+
 					'</div>'+
 					'<div class="modal-body">'+s.content+'</div>'+
 					(s.footer!=""?'<div class="modal-footer">'+

@@ -873,7 +873,7 @@ html, body {
 }
 
 .modal-preview .modal-header{
-	padding: 5px 15px;
+	/*padding: 5px 15px;*/
 }
 
 .modal-preview .modal-header .h4, .modal-preview .modal-header h4 {
@@ -881,8 +881,8 @@ html, body {
 }
 
 .modal-preview .modal-header .btn-danger{
-	padding: 2px 3px 1px 3px !important;
-    margin-top: 9px !important;
+/*	padding: 2px 3px 1px 3px !important;
+    margin-top: 9px !important;*/
 	font-size: 9px !important;
 }
 
