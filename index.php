@@ -1,64 +1,4 @@
-<?php
-function include_script(string $url, string $version='', string $path=''){
-	if(filter_var($url, FILTER_VALIDATE_URL)===false)
-	{
-		if(empty($path))
-			$path = $url;
-			
-		$version = preg_replace("/[^0-9\.\_]/Ui","",$version);
-		
-		$id = '';
-		if(file_exists($path) || file_exists(dirname(__FILE__).$path) || file_exists(dirname(__FILE__).'/'.$path))
-		{
-			$id = sprintf("?version=%d.%d.%d",filemtime($path),filesize($path),strlen($path));
-		}
-		else
-		{
-			if(!empty($version))
-				$id = sprintf("?version=%s.%d",$version,strlen($url));
-		}
-	}
-	else
-	{
-		if(!empty($version))
-				$id = sprintf("?version=%s.%d",$version,strlen($url));
-	}
-	
-	$url = $url.$id;
-	
-	printf('<script src="%s"></script>%s',$url,PHP_EOL);
-}
-
-function include_style(string $url, string $version='', string $path=''){
-	if(filter_var($url, FILTER_VALIDATE_URL)===false)
-	{
-		if(empty($path))
-			$path = $url;
-			
-		$version = preg_replace("/[^0-9\.\_]/Ui","",$version);
-		
-		$id = '';
-		if(file_exists($path) || file_exists(dirname(__FILE__).$path) || file_exists(dirname(__FILE__).'/'.$path))
-		{
-			$id = sprintf("?version=%d.%d.%d",filemtime($path),filesize($path),strlen($path));
-		}
-		else
-		{
-			if(!empty($version))
-				$id = sprintf("?version=%s.%d",$version,strlen($url));
-		}
-	}
-	else
-	{
-		if(!empty($version))
-				$id = sprintf("?version=%s.%d",$version,strlen($url));
-	}
-	
-	$url = $url.$id;
-	
-	printf('<link href="%s" rel="stylesheet">%s',$url,PHP_EOL);
-}
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
 	  <script type="text/javascript">
@@ -170,16 +110,14 @@ function include_style(string $url, string $version='', string $path=''){
     
     <title>MAIL EDITOR</title>
 
-    <?php // echo include_style('assets/css/bootstrap.min.css'); ?>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-	<?=include_style('assets/css/bootstrap-colorpicker.min.css'); ?>
-    <?=include_style('assets/css/bootstrap-slider.min.css'); ?>
-    <?=include_style('assets/plugins/medium-editor/medium-editor.min.css'); ?>
-	<?=include_style('assets/plugins/medium-editor/template.min.css'); ?>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
-    <?=include_style('assets/css/style.css'); ?>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="assets/plugins/medium-editor/medium-editor.min.css">
+    <link rel="stylesheet" href="assets/plugins/medium-editor/template.min.css">
+    <link rel="stylesheet" href="assets/css/spectrum.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -222,9 +160,9 @@ function include_style(string $url, string $version='', string $path=''){
 
 	<div id="modal" class="reset-this"></div>
 
-    <button class="btn btn-lg btn-success btn-materialize btn-left-bottom btn-left-bottom-1 hidden" type="button" id="preview" title="Preview" data-toggle="tooltip" data-placement="top" data-trigger="hover"><span class="glyphicon glyphicon-zoom-in"></span></button>
+    <button class="btn btn-lg btn-success btn-left-bottom" type="button" id="preview" title="Preview" data-toggle="tooltip" data-placement="top" data-trigger="hover"><i class="fa fa-search-plus"></i></button>
       
-    <button class="btn btn-lg btn-default btn-materialize btn-left-bottom btn-left-bottom-3 hidden" type="button" id="setting" title="Layout Options" data-toggle="tooltip" data-placement="top" data-trigger="hover"><span class="fa fa-cog fa-spin"></span></button>      
+    <button class="btn btn-lg btn-secondary btn-left-bottom-3" type="button" id="setting" title="Layout Options" data-toggle="tooltip" data-placement="top" data-trigger="hover"><span class="fa fa-cog fa-spin"></span></button>      
       
     <div id="alerts"></div>
       
@@ -385,25 +323,20 @@ function include_style(string $url, string $version='', string $path=''){
     </div>
 
     <script src="https://use.fontawesome.com/86c8941095.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    
-    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
-
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
-
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/bootbox.min.js"></script>
     <script src="assets/js/debounce.js"></script>
     <script src="assets/js/bootstrap-colorpicker.min.js"></script>
     <script src="assets/js/bootstrap-slider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
-    <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
-    <?=include_script('assets/js/creative.tools.js'); ?>
-	<?=include_script('assets/js/html2canvas.js'); ?>
-	<?=include_script('assets/js/editor.js'); ?>
+    <script src="assets/js/spectrum.min.js"></script>
+    <script src="assets/plugins/medium-editor/medium-editor.min.js"></script>
+    <script src="assets/js/creative.tools.js"></script>
+    <script src="assets/js/html2canvas.js"></script>
+    <script src="assets/js/creative.tools.js"></script>
+    <script src="assets/js/editor.js"></script>
 
   </body>
 </html>

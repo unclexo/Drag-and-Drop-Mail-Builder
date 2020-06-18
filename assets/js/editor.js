@@ -11,16 +11,16 @@ var ajaxUrls = {
             clean : function(){
                 (function(e){
                     var editor = $(e);
-                    editor.each(function(){
-                        $(this)  .removeAttr('contenteditable')
-                                 .removeAttr('spellcheck')
-                                 .removeAttr('data-medium-editor-element')
-                                 .removeAttr('role')
-                                 .removeAttr('aria-multiline')
-                                 .removeAttr('data-medium-editor-editor-index')
-                                 .removeAttr('medium-editor-index')
-                                 .removeAttr('data-placeholder')
-                                 .removeClass('medium-editor-element');
+                    editor.each(function() {
+                        $(this).removeAttr('contenteditable')
+                            .removeAttr('spellcheck')
+                            .removeAttr('data-medium-editor-element')
+                            .removeAttr('role')
+                            .removeAttr('aria-multiline')
+                            .removeAttr('data-medium-editor-editor-index')
+                            .removeAttr('medium-editor-index')
+                            .removeAttr('data-placeholder')
+                            .removeClass('medium-editor-element');
                     });
                 }('.medium-editor-element'));
             }

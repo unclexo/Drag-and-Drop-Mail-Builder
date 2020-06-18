@@ -886,88 +886,15 @@ html, body {
 	font-size: 9px !important;
 }
 
-.btn-materialize{
-	position:absolute;
-	padding: 15px 16px 12px;
-	
-	border-radius:100%;
-	-webkit-border-radius:100%;
-	-moz-border-radius:100%;
-	-ms-border-radius:100%;
-	-o-border-radius:100%;
-	
-	box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-	-webkit-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-	-moz-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-	-ms-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-	-o-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-	
-	animation: fadeshaddow 5s 5s infinite;
-	-moz-animation: fadeshaddow 5s 5s infinite;
-	-webkit-animation: fadeshaddow 5s 5s infinite;
-     -o-animation: fadeshaddow 5s 5s infinite;
-	 
-	 overflow: hidden;
-	
-	z-index:500;
-}
-.btn-materialize * {
-	pointer-events: none;
-}
-.btn-materialize input[type^='file']{
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	opacity: 0;
-	pointer-events: all;
-	cursor: pointer;
-	height: 100%;
-	width: 100%;
-}
-
-@keyframes fadeshaddow {
-    0% {
-		box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-		-webkit-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-		-moz-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-		-ms-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-		-o-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-	}
-    50% {
-		box-shadow:rgba(0,0,0,1) 0 0 30px, rgba(255,255,255,0.8) 0 0 40px;
-		-webkit-box-shadow:rgba(0,0,0,1) 0 0 30px, rgba(255,255,255,0.8) 0 0 40px;
-		-moz-box-shadow:rgba(0,0,0,1) 0 0 30px, rgba(255,255,255,0.8) 0 0 40px;
-		-ms-box-shadow:rgba(0,0,0,1) 0 0 30px, rgba(255,255,255,0.8) 0 0 40px;
-		-o-box-shadow:rgba(0,0,0,1) 0 0 30px, rgba(255,255,255,0.8) 0 0 40px;
-	}
-    100% {
-		box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-		-webkit-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-		-moz-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-		-ms-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-		-o-box-shadow:rgba(0,0,0,0.8) 0 0 10px, rgba(255,255,255,0.5) 0 0 20px;
-	}
-}
-
-.btn-left-bottom{
+.btn-left-bottom {
+    position: absolute;
 	left:32px;
 	bottom:32px;
-}
-.btn-left-bottom-1{
-	left:32px;
-	bottom:32px;
-}
-
-.btn-left-bottom-2{
-	left:100px;
-	bottom:32px;
-	pointer-events: none;
 }
 
 .btn-left-bottom-3{
-	left:167px;
+    position: absolute;
+	left:100px;
 	bottom:32px;
 }
 
@@ -977,25 +904,6 @@ a.badge-transparent{
 }
 a.badge-transparent:hover{
 	color:#ff0000;
-}
-#attach-data.list-group{
-	margin-top: 70px;
-}
-#attach-data .list-group-item.active{
-	padding:3px 15px;
-	font-size:12px;
-}
-#attach-data .list-group-item.active .h3,
-#attach-data .list-group-item.active .h4, 
-#attach-data .list-group-item.active .h5, 
-#attach-data .list-group-item.active .h6, 
-#attach-data .list-group-item.active h3,
-#attach-data .list-group-item.active h4, 
-#attach-data .list-group-item.active h5, 
-#attach-data .list-group-item.active h6 {
-    margin-top: 3px;
-    margin-bottom: 3px;
-	font-size:12px;
 }
 #alerts{
 	position:absolute;
