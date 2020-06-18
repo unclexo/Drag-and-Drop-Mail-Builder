@@ -1,4 +1,8 @@
-(function($){
+var ajaxUrls = {
+    computerUploadUrl: 'https://192.168.10.60/xerochat/test/upload_file',
+};
+
+(function($, ajaxUrls){
 	/*****************************************************************
 	 * Here starting main functionality of mail builder
 	**/ 
@@ -689,7 +693,6 @@
 		}});
 	});
     
-    
     $(document).on('click touchstart','.editable-open .save-remove > .save',function(e){
 		e.preventDefault();
         var $this = $(this).parents('.editable-open'),
@@ -1341,6 +1344,7 @@
     $(document).on('mouseover','.editable-content',function(){
         $(this).focus().keyup();
     });
+
     $(document).on('mouseleave','.editable-content',function(e){
         if($(e.target).is('.dd-body-container') || $(e.target).is('.ready-for-edit'))
         {
@@ -1513,7 +1517,7 @@
                     processData: false,
                     contentType: false, 
                     enctype: 'multipart/form-data',
-                    url: 'https://192.168.10.60/xerochat/test/upload_file',
+                    url: ajaxUrls.computerUploadUrl,
                     success: function(res) {
                         var data = JSON.parse(res);
                         if (true === data.status) {
@@ -2159,9 +2163,8 @@
             parent.toggleClass('in');
     });
 	
-    
 	/* When DOM is ready */
-	$(document).ready(function(){
+	$(document).ready(function() {
 		// load theme on window refresh
 		init.loadTheme(function(load){
 			if(load===true)
@@ -2171,6 +2174,7 @@
 				init.loadOptions();
 			}
 		});
+
 		$('[data-toggle="tooltip"]').tooltip();
 	});
 	
@@ -2184,4 +2188,4 @@
 	
 	});
 	
-}(window.jQuery || window.Zepto));
+}(window.jQuery || window.Zepto, ajaxUrls));
