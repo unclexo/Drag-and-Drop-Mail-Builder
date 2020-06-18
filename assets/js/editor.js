@@ -101,28 +101,6 @@ var ajaxUrls = {
                     '<button type="button" class="remove" title="Delete"><i class="fa fa-times"></i></button>' + 
                 '</div>',/* + 
                 '<div class="overly"></div>',*/
-		attachments : function(){
-			var attachments = $.storage('attachments');	
-			if(null !== attachments && attachments.length > 0)
-			{
-				attachments = JSON.parse(attachments);
-				var attachList = $("#attach-data");
-				attachList.html('').promise().done(function(){
-					if(null !== attachments && attachments.length > 0)
-					{
-						html = [];
-						j=0;
-						html[j]='<li class="list-group-item text-left active"><h4><span class="glyphicon glyphicon-paperclip"></span> Attachments</h4></li>';
-						for(i in attachments)
-						{
-							j++;
-							html[j]='<li class="list-group-item text-left"><a class="badge badge-transparent remove-attachments" href="javascript:void(0);" data-id="' + i + '"><span class="glyphicon glyphicon-remove-sign"></span></a>' + attachments[i].replace(new RegExp(localStorage.session_id + '_','gi'),'') + '</li>';
-						}
-						attachList.append(html.join("\r\n"));
-					}
-				});
-			}
-		},
 		/* Load main options */
 		loadOptions : function(){			
 			// layout background color
@@ -309,10 +287,7 @@ var ajaxUrls = {
 			var headerExists = $('#dd-sidebar-left');
 			if(headerExists.length === 0) $('#dd-sidebar-left-exists').remove();  
 			var headerExists = $('#dd-sidebar-right');
-			if(headerExists.length === 0) $('#dd-sidebar-right-exists').remove();  
-			
-			/* Attachments */
-			init.attachments();
+			if(headerExists.length === 0) $('#dd-sidebar-right-exists').remove();
             
             try{
                 textEditor.destroy();
@@ -337,7 +312,6 @@ var ajaxUrls = {
 				
 				mb.mailTemplate.html(data).promise().done(function(){
 					$('#preview').removeClass('hidden');
-					$('#attachment').removeClass('hidden');
                     $('#setting').removeClass('hidden');
 					window.location.hash = id;
 					if($.isFunction(callback))
@@ -380,7 +354,6 @@ var ajaxUrls = {
 								
 								$('#mail-template').html(savedHTML).promise().done(function(){
 									$('#preview').removeClass('hidden');
-									$('#attachment').removeClass('hidden');
                                     $('#setting').removeClass('hidden');
 									$('.editable-open').addClass('editable').removeClass('editable-open');
 									if($.isFunction(callback))
@@ -576,12 +549,12 @@ var ajaxUrls = {
 	var openEditor = true;
 
 	/* Delete whole project */
-	$(document).on('click touchstart','#delete',function(e){
+	$(document).on('click touchstart','#delete',function(e) {
 		e.preventDefault();
-		if(window.location.hash)
-		{
+		if(window.location.hash) {
 			var $button = $(this),
 				id = window.location.hash.replace(/\#/,'');
+
 			bootbox.confirm({
 				message:'<h3>Are you sure you want delete whole project?</h3><p>Once you confirm, you can\'t stop this proccess and you will lost everything.</p>',
 				title : 'Please confirm!',
@@ -595,48 +568,17 @@ var ajaxUrls = {
 						className: 'btn-default'
 					}
 				},
-				callback: function(result){
-				if(result)
-				{
-					if(['no-sidebar','left-sidebar','right-sidebar','both-sidebar'].indexOf(id) > -1){
-						$.storage('save-'+id,null);
-						$.storage('session_id',null);
-					}
-					window.location.href = window.base;
+				callback: function(result) {
+    				if(result) {
+    					if(['no-sidebar','left-sidebar','right-sidebar','both-sidebar'].indexOf(id) > -1){
+    						$.storage('save-'+id,null);
+    						$.storage('session_id',null);
+    					}
 
-					var currentAttachments = $.storage('attachments');
-					if(null !== currentAttachments && currentAttachments.length > 0)
-					{
-						currentAttachments = JSON.parse(currentAttachments);
-
-						for(id in currentAttachments)
-						{
-							$.post( window.base + '/include/upload.php', {
-								session_id : localStorage.session_id,
-								filename : currentAttachments[id],
-								option : 'remove'
-							});
-                            
-                            // Clean image editor
-                            $.post( window.base + '/include/fetch-image.php', {
-                                clean : window.session_id,
-                                option : 'destroy'
-                            }).done(function(data){
-                                
-                            });
-                            
-                            // Clean image editor session
-                            for(var i in localStorage) {
-                                if(/editor_\d+/.test(i))
-                                {
-                                    localStorage.removeItem(i);
-                                }
-                            }
-							$.storage('attachments',null);
-						}
-					}
-				}
-			}});
+    					window.location.href = window.base;
+    				}
+                }
+            });
 		}
 	});
 
@@ -1666,32 +1608,25 @@ var ajaxUrls = {
 		
 		$input.parent().parent().find('.alert').remove();
 		
-		if(val.length > 0)
-		{
-			if($.validate(val, 'EMAIL')===false)
-			{
+		if(val.length > 0) {
+			if($.validate(val, 'EMAIL')===false) {
 				$input.parent().after('<div class="alert alert-warning" role="alert">Email address have wrong format.</div>');
-			}
-			else
-			{
+			} else {
 				var $template = $("#saved-template"),
 					oldHTML = $template.html(),
 					body = '<body>' + oldHTML + '</body>',
 					currentAttachments = $.storage('attachments');	
 				
-				if(null === currentAttachments || currentAttachments.length === 0){
+				if(null === currentAttachments || currentAttachments.length === 0) {
 					currentAttachments = '';
 				}
 				
 				$.post(window.base + '/include/test-email.php', {mail:val, body:body, attachments : currentAttachments}).done(function(returns){
-					if(returns == 'true')
-					{
+					if(returns == 'true') {
 						$input.parent().after('<div class="alert alert-success" role="alert">Test email was successfully sent!</div>');
 						$input.parent().remove();
 						$button.text('Done').attr({'data-dismiss':'modal', 'id':null}).removeClass('btn-success').addClass('btn-primary').prepend('<span class="glyphicon glyphicon-ok"></span> ');
-					}
-					else
-					{
+					} else {
 						$input.parent().after('<div class="alert alert-danger" role="alert">Some error happen, can\'t send email.</div>');
 					}
 				}).fail(function(a,b,c){
@@ -1699,9 +1634,9 @@ var ajaxUrls = {
 					$input.parent().after('<div class="alert alert-danger" role="alert">Some error happen, can\'t send email.</div>');
 				});
 			}
-		}
-		else
+		} else {
 			$input.parent().after('<div class="alert alert-danger" role="alert">You must insert email address.</div>');
+        }
 	});
 	
 	/* Test Email Form */
@@ -1946,189 +1881,6 @@ var ajaxUrls = {
 		else
 			target.attr('background',null);
 	}));
-	
-	$(document).on('click', '.remove-attachments', function(e){
-		e.preventDefault();
-		var currentAttachments = $.storage('attachments'),
-			id = $(this).attr('data-id');	
-		if(null !== currentAttachments && currentAttachments.length > 0)
-		{
-			currentAttachments = JSON.parse(currentAttachments);
-			attachments = [];
-			
-			$.ajax({
-				url: window.base + '/include/upload.php',
-				type: 'POST',
-				data: {
-					session_id : localStorage.session_id,
-					filename : currentAttachments[id],
-					option : 'remove'
-				},
-				cache: false
-				
-			}).always(function(){
-				
-			}).done(function (data) {
-				
-				for(i in currentAttachments)
-				{
-					if(i != id)
-						attachments.push(currentAttachments[i]);
-				}
-				if(attachments.length>0){
-					$.storage('attachments',JSON.stringify(attachments));
-				}
-				else
-				{
-					$.storage('attachments',null);
-				}
-				init.attachments();
-				
-			}).fail(function (jqXHR,textStatus,errorThrown) {
-				console.log('-----------------------');
-				console.log('DELETE ERROR');
-				console.log('jqXHR = %s', jqXHR);
-				console.log('textStatus = %s', textStatus);
-				console.log('errorThrown = %s', errorThrown);
-				console.log('-----------------------');
-			});
-		}
-	});
-
-	/* Attachment */
-	$(document).on('change input',"#attachment",function(e){
-		var $form = $(this),
-			allowed = 'pdf,gif,jpeg,jpg,png,txt,doc,docx'.split(','),
-			$files = $form.find('input[type^="file"]').get(0),
-			currentAttachments = $.storage('attachments');
-		
-		if(null !== currentAttachments && currentAttachments.length > 0)
-		{
-			currentAttachments = JSON.parse(currentAttachments);
-			if(null !== currentAttachments && currentAttachments.length >= 1){
-				$('#alerts').info('<h4>You can upload only one file per mail.</h4><p>Please delete existing and upload new one.</p>','danger',offset);
-				$($files).val('');
-				return false;
-			}
-		}
-		
-		$form.tooltip('hide');
-		
-		 var formData = new FormData($form[0]);
-			 formData.append('session_id',window.session_id);
-			 formData.append('option','upload'),
-			 metadata = [];
-			 
-		if('FileReader' in window)
-		{
-			if(typeof $files.files !== 'undefined' && $files.files.length > 0)
-			{
-				// Check maximum upload size
-				var maxSize = 0,errorExtension=false, offset = 0;
-				for(fs=0; fs < $files.files.length; fs++)
-				{
-					metadata[localStorage.session_id + '_' + $files.files[fs].name] = {
-						name : $files.files[fs].name,
-						size : $files.files[fs].size,
-						type : $files.files[fs].type,
-					};
-					
-					maxSize = maxSize + $files.files[fs].size;
-					var fileType = $files.files[fs].name.split('.');
-					
-					var extension = fileType[fileType.length-1].toLowerCase();
-
-					if(!(allowed.indexOf(extension)>-1))
-					{
-						$('#alerts').info('<h4>Allowed extensions are ' + allowed.join(', ') + '.</h4><p>Plese choose allowed file extensions.</p>','danger',offset);
-						offset += 100;
-						return false;
-					}
-				}
-				maxSize = (maxSize/1000000);
-				
-				if(maxSize > 7)
-				{
-					$('#alerts').info('<h4>Maximum upload size is 7MB.</h4><p>Your upload size is ' + (maxSize) + 'MB.</p><p>Plese resize your files or choose somethig smaller.</p>','danger');
-					$($files).val('');
-					return false;
-				}
-			}
-		}
-		
-		$.ajax({
-			url: window.base + '/include/upload.php',
-			type: 'POST',
-			xhr: function() {
-				var myXhr = $.ajaxSettings.xhr();
-				return myXhr;
-			},
-			data: formData,
-			cache: false,
-			contentType: false,
-			processData: false,
-			dataType : 'json'
-		}).always(function(){
-			$form.find('.glyphicon').text('Loading...');
-		}).done(function (data) {
-			
-			if(data[0].return !== true){
-				$('#alerts').info(data[0].message,'danger');
-			}
-			
-			$($files).val('');
-			// collection
-			var attachments = [],
-				attachmentsData = [];
-			
-			// Get from existing
-			
-			if(null !== currentAttachments && currentAttachments.length > 0)
-			{
-				currentAttachments = JSON.parse(currentAttachments);
-				for(i in currentAttachments)
-				{
-					attachments.push(currentAttachments[i]);
-				}
-			}
-
-			// Get new
-			for(i in data)
-			{
-				if(data[i].return === true)
-				{
-					attachments.push(data[i].file_name);
-				}
-			}
-
-			attachments = attachments.filter(function(val,i){
-				return attachments.indexOf(val)==i;
-			});
-			
-			// Save new data
-			if(attachments.length > 0){
-				$.storage('attachments', JSON.stringify(attachments));
-				
-				// attach-data
-				init.attachments();
-			}
-			
-			$form.find('.glyphicon').text('');
-			
-		}).fail(function (jqXHR,textStatus,errorThrown) {
-			$($files).val('');
-			
-			$('#alerts').info('ERROR: Can\'t upload this file for unexpected reason.','danger');
-			
-			console.log('UPLOAD ERROR');
-			console.log('jqXHR = %s', jqXHR);
-			console.log('textStatus = %s', textStatus);
-			console.log('errorThrown = %s', errorThrown);
-			console.log('-----------------------');
-			$form.find('.glyphicon').text('ERROR!');
-		});
-		
-	});
 	
 	/*****************************************************************
 	 * Here starting main DOM snippets and functionality
