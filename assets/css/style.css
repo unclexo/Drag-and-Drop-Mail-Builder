@@ -750,7 +750,7 @@ html, body {
 }
 .editable .save-remove i,
 .editable-open .save-remove i {
-    pointer: cursor;
+    cursor: pointer;
 }
 
 .editable .save-remove button,
