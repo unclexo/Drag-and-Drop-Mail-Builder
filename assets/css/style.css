@@ -187,7 +187,7 @@ html, body {
 	margin-left:5px;
 }
 
-.get-options>.glyphicon{
+.get-options>.fa{
 	font-size:250%;
 	padding:10px;
 	color:#777;
@@ -210,8 +210,8 @@ html, body {
 	cursor: -o-grab;
 }
 
-.get-options:hover>.glyphicon,
-.get-options:focus>.glyphicon{
+.get-options:hover>.fa,
+.get-options:focus>.fa{
 	color:#222;
 }
 
@@ -724,7 +724,7 @@ html, body {
 }
 
 .editable .save-remove,
-.editable-open .save-remove{
+.editable-open .save-remove {
     text-align: center;
     position: absolute;
     background-color: #3FA9F5;
@@ -747,6 +747,10 @@ html, body {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;*/
     visibility: hidden;
+}
+.editable .save-remove i,
+.editable-open .save-remove i {
+    pointer: cursor;
 }
 
 .editable .save-remove button,
@@ -934,17 +938,17 @@ button, input[type='button'],
     margin: 10% auto;
     padding: 0 30px;
 }
-#get-options h4{
+#get-options p{
     color: #555;
 }
 
 @media all and (max-width:1500px)
 {
-	.get-options{
+	.get-options {
 		/*width: 30%;*/
 		font-size: 80%;
 	}
-	.get-options>.glyphicon {
+	.get-options>.fa {
 		padding: 3px 10px;
 	}
 }
@@ -954,7 +958,7 @@ button, input[type='button'],
 	.get-options {
 		padding: 5px 10px;
 	}
-	.get-options>.glyphicon {
+	.get-options>.fa {
 		font-size: 200%;
 		padding: 10px;
 		color: #777;
@@ -981,7 +985,7 @@ button, input[type='button'],
 
 @media all and (max-width:1024px)
 {
-	.get-options>.glyphicon {
+	.get-options>.fa {
 		 padding: 3px 5px;
    		 font-size: 230%;
 	}

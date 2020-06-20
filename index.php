@@ -144,14 +144,28 @@
         <div class="container-sidebar hidden" id="option-tabs">
 
             <div id="get-options" class="text-center">
-                <h4>Drag and drop the elements below to the work area on the left</h4>
-            <!--    <div class="get-options choose" data-id="title" id="title"><span class="glyphicon glyphicon-text-size"></span><div>Heading</div></div>  -->
-                <div class="get-options choose" data-id="content" id="content"><span class="glyphicon glyphicon-list-alt"></span><div>Text</div></div>
-                <div class="get-options choose" data-id="image" id="image"><span class="glyphicon glyphicon-picture"></span><div>Image</div></div>
-                <div class="get-options choose" data-id="link" id="link"><span class="glyphicon glyphicon-link"></span><div>Link</div></div>
-                <div class="get-options choose" data-id="divider" id="divider"><span class="glyphicon glyphicon-minus"></span><div>Divider</div></div>
-            <!--    <div class="get-options choose" data-id="quote" id="quote"><span class="glyphicon glyphicon-comment"></span><div>Blockquote</div></div> -->
+
+                <p class="lead">Drag & Drop elements</p>
+
+                <div class="get-options choose" data-id="content" id="content">
+                    <i class="fa fa-file-text-o"></i>
+                    <div>Text</div>
+                </div>
+                <div class="get-options choose" data-id="image" id="image">
+                    <i class="fa fa-picture-o"></i>
+                    <div>Image</div>
+                </div>
+                <div class="get-options choose" data-id="link" id="link">
+                    <i class="fa fa-link"></i>
+                    <div>Link</div>
+                </div>
+                <div class="get-options choose" data-id="divider" id="divider">
+                    <i class="fa fa-minus"></i>
+                    <div>Divider</div>
+                </div>
+
                 <div id="editor"></div>
+
                 <ul id="attach-data" class="list-group"></ul>
             </div>
             
