@@ -555,28 +555,21 @@ var ajaxUrls = {
 			var $button = $(this),
 				id = window.location.hash.replace(/\#/,'');
 
-			bootbox.confirm({
-				message:'<h3>Are you sure you want delete whole project?</h3><p>Once you confirm, you can\'t stop this proccess and you will lost everything.</p>',
-				title : 'Please confirm!',
-				buttons: {
-					confirm: {
-						label: 'DELETE WHOLE PROJECT',
-						className: 'btn-danger'
-					},
-					cancel: {
-						label: 'Cancel',
-						className: 'btn-default'
-					}
-				},
-				callback: function(result) {
-    				if(result) {
-    					if(['no-sidebar','left-sidebar','right-sidebar','both-sidebar'].indexOf(id) > -1){
-    						$.storage('save-'+id,null);
-    						$.storage('session_id',null);
-    					}
+            swal({
+                title: "Are you sure?",
+                text: "Once you confirm, you cant stop this proccess and you will lost everything.",
+                icon: "warning",
+                buttons: ['Cancel', 'Delete'],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                    if(['no-sidebar','left-sidebar','right-sidebar','both-sidebar'].indexOf(id) > -1){
+                        $.storage('save-'+id,null);
+                        $.storage('session_id',null);
+                    }
 
-    					window.location.href = window.base;
-    				}
+                    window.location.href = window.base;
                 }
             });
 		}
@@ -597,42 +590,33 @@ var ajaxUrls = {
 		openEditor = false;
 		var $this = $(this),
 			remove = $this.parents('table')[0];
-		bootbox.confirm({
-			message : '<h3>Are you sure you want delete this element?</h3>',
-			title : 'Please confirm!',
-			buttons: {
-				confirm: {
-					label: 'DELETE',
-					className: 'btn-danger'
-				},
-				cancel: {
-					label: 'No',
-					className: 'btn-default'
-				}
-			},
-			callback : function(result){
-			if(result)
-			{
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will lose the element!",
+            icon: "warning",
+            buttons: ['Cancel', 'Delete'],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
                 $('.tooltip-editor').remove();
                 
                 totalCleaner();
                 
                 $('.editable-open, .editable').parents('.ui-sortable').sortable({ disabled: false });
-				remove.remove();
-				$("#panel-edit").fadeOut(function(){
-					$(this).remove();
-				});
-				setTimeout(function(){
-					openEditor = true;
-				},1000);
-			}
-			else
-			{
-				setTimeout(function(){
-					openEditor = true;
-				},1000);
-			}
-		}});
+                remove.remove();
+                $("#panel-edit").fadeOut(function(){
+                    $(this).remove();
+                });
+                setTimeout(function() {
+                    openEditor = true;
+                },1000);
+            } else {
+                setTimeout(function() {
+                    openEditor = true;
+                },1000);
+            }
+        });
 	});
     
     $(document).on('click touchstart','.editable-open .save-remove > .save',function(e){

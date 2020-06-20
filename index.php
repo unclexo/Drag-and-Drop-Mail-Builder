@@ -341,7 +341,7 @@
     <script src="assets/js/jquery-ui.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/bootbox.min.js"></script>
+    <script src="assets/js/sweetalert.min.js"></script>
     <script src="assets/js/debounce.js"></script>
     <script src="assets/js/bootstrap-colorpicker.min.js"></script>
     <script src="assets/js/bootstrap-slider.min.js"></script>
