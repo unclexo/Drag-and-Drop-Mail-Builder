@@ -209,7 +209,7 @@
                 </div>
             </div>
 
-            <h6 class="text-left option-title mt-5">Header Section</h6>
+            <h6 class="text-left option-title mt-4">Header Section</h6>
 
             <div class="form-group">
                 <label for="head-bkg-color-form" class="col-form-label">Background Color:</label>
@@ -232,7 +232,7 @@
 
             <div id="dd-body-exists">
 
-                <h6 class="text-left option-title mt-5">Content Section</h6>
+                <h6 class="text-left option-title mt-4">Content Section</h6>
 
                 <div class="form-group">
                     <label for="content-bkg-color-form" class="col-form-label">Background Color:</label>
@@ -255,7 +255,7 @@
             </div>
 
             <div id="dd-sidebar-left-exists">
-                <h6 class="text-left option-title mt-5">Left Sidebar Section</h6>
+                <h6 class="text-left option-title mt-4">Left Sidebar Section</h6>
 
                 <div class="form-group">
                     <label for="left-bkg-color-form" class="col-form-label">Background Color:</label>
@@ -300,7 +300,7 @@
 
             </div>
 
-            <h6 class="text-left option-title">Footer Section</h6>
+            <h6 class="text-left option-title mt-4">Footer Section</h6>
 
             <div class="form-group">
                 <label for="footer-bkg-color-form" class="col-form-label">Background Color:</label>
