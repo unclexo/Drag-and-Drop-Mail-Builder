@@ -848,7 +848,6 @@ html, body {
 }
 .option-title{
 	background:#d1d1d1;
-	border-bottom:1px solid #d1d1d1;
 	margin-bottom:15px;
 	padding:8px 10px;
 	-webkit-box-shadow:0px 1px 1px #fff;
@@ -1315,15 +1314,39 @@ button, input[type='button'],
     padding: 0 15px;
 }
 
-.tools .control-label{
+.tools .col-form-label {
     font-size: 13px;
     line-height: 13px;
 }
 
-.colorpicker-element .add-on i, .colorpicker-element .input-group-addon i {
-    display: inline-block;
-    cursor: pointer;
-    height: 38px !important;
-    vertical-align: top !important;
-    width: 26px !important;
+.bs-slider-container .slider.slider-horizontal {
+    margin-left: 10px;
+}
+
+#head-height .slider-selection, 
+#content-height .slider-selection, 
+#footer-height .slider-selection, 
+#left-height .slider-selection, 
+#right-height .slider-selection {
+    background: #BABABA;
+}
+
+.input-group-addon {
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;    
+}
+
+.colorpicker-element .add-on i, 
+.colorpicker-element .input-group-addon i {
+
 }

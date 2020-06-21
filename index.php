@@ -186,146 +186,140 @@
             <h4><span class="fa fa-cog fa-spin"></span> Settings</h4>
         </div>
         <div class="tools-body">
-            <h5 class="text-left option-title">Layout</h5>
-            <div class="form-horizontal">
 
-
-                <div class="form-group">
-                    <label for="body-layout-bkg-color-form" class="col-sm-6 control-label text-left">Background Color:</label>
-                    <div class="col-sm-6">
-                        <div id="body-layout-bkg-color" class="input-group colorpicker-component">
-                            <span class="input-group-addon"><i></i></span>
-                            <input type="text" value="" class="form-control input-sm" id="body-layout-bkg-color-form">
-                        </div>
+            <h6 class="text-left option-title mt-3">Layout</h6>
+            
+            <div class="form-group">
+                <label for="body-layout-bkg-color-form" class="col-form-label">Background Color:</label>
+                <div>
+                    <div id="body-layout-bkg-color" class="input-group colorpicker-component">
+                        <input type="text" value="" class="form-control input-sm" id="body-layout-bkg-color-form">
+                        <span class="input-group-addon"><i></i></span>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="body-layout-bkg-color-form" class="col-sm-6 control-label text-left">Body Color:</label>
-                    <div class="col-sm-6">
-                        <div id="body-layout-bkg-color-body" class="input-group colorpicker-component">
-                            <span class="input-group-addon"><i></i></span>
-                            <input type="text" value="" class="form-control input-sm" id="body-layout-bkg-color-body-form">
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <h5 class="text-left option-title">Header Section</h5>
-            <div class="form-horizontal">
-
-                <div class="form-group">
-                    <label for="head-bkg-color-form" class="col-sm-6 control-label text-left">Background Color:</label>
-                    <div class="col-sm-6">
-                        <div id="head-bkg-color" class="input-group colorpicker-component">
-                            <span class="input-group-addon"><i></i></span>
-                            <input type="text" value="" class="form-control input-sm" id="head-bkg-color-form">
-                        </div>
+            <div class="form-group">
+                <label for="body-layout-bkg-color-form" class="col-form-label">Body Color:</label>
+                <div>
+                    <div id="body-layout-bkg-color-body" class="input-group colorpicker-component">
+                        <input type="text" value="" class="form-control input-sm" id="body-layout-bkg-color-body-form">
+                        <span class="input-group-addon"><i></i></span>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="head-height" class="col-sm-4 control-label text-left">Height:</label>
-                    <div class="col-sm-8 text-right">
-                        <input type="text" class="form-control input-sm" id="head-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">&nbsp;&nbsp;&nbsp;<small>Height: <span id="head-height-val">auto</span></small>
-                    </div>
-                </div>
-
             </div>
+
+            <h6 class="text-left option-title mt-5">Header Section</h6>
+
+            <div class="form-group">
+                <label for="head-bkg-color-form" class="col-form-label">Background Color:</label>
+                <div>
+                    <div id="head-bkg-color" class="input-group colorpicker-component">
+                        <input type="text" value="" class="form-control input-sm" id="head-bkg-color-form">
+                        <span class="input-group-addon"><i></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="head-height" class="col-form-label">Height:</label>
+                <div class="bs-slider-container">
+                    <input type="text" class="form-control input-sm" id="head-height" data-slider-id="head-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">
+                    <p class="text-left small">Height: <span id="head-height-val">auto</span></p>
+                </div>
+            </div>
+
 
             <div id="dd-body-exists">
-                <h5 class="text-left option-title">Content Section</h5>
-                <div class="form-horizontal">
 
-                    <div class="form-group">
-                        <label for="content-bkg-color-form" class="col-sm-6 control-label text-left">Background Color:</label>
-                        <div class="col-sm-6">
-                            <div id="content-bkg-color" class="input-group colorpicker-component">
-                                <span class="input-group-addon"><i></i></span>
-                                <input type="text" value="" class="form-control input-sm" id="content-bkg-color-form">
-                            </div>
+                <h6 class="text-left option-title mt-5">Content Section</h6>
+
+                <div class="form-group">
+                    <label for="content-bkg-color-form" class="col-form-label">Background Color:</label>
+                    <div>
+                        <div id="content-bkg-color" class="input-group colorpicker-component">
+                            <input type="text" value="" class="form-control input-sm" id="content-bkg-color-form">
+                            <span class="input-group-addon"><i></i></span>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="content-height" class="col-sm-4 control-label text-left">Height:</label>
-                        <div class="col-sm-8 text-right">
-                            <input type="text" class="form-control input-sm" id="content-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">&nbsp;&nbsp;&nbsp;<small>Height: <span id="content-height-val">auto</span></small>
-                        </div>
-                    </div>
-
                 </div>
+
+                <div class="form-group">
+                    <label for="content-height" class="col-form-label">Height:</label>
+                    <div class="bs-slider-container">
+                        <input type="text" class="form-control input-sm" id="content-height" data-slider-id="content-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">
+                        <p class="text-left small">Height: <span id="content-height-val">auto</span></p>
+                    </div>
+                </div>
+
             </div>
 
             <div id="dd-sidebar-left-exists">
-                <h5 class="text-left option-title">Left Sidebar Section</h5>
-                <div class="form-horizontal">
+                <h6 class="text-left option-title mt-5">Left Sidebar Section</h6>
 
-                    <div class="form-group">
-                        <label for="left-bkg-color-form" class="col-sm-6 control-label text-left">Background Color:</label>
-                        <div class="col-sm-6">
-                            <div id="left-bkg-color" class="input-group colorpicker-component">
-                                <span class="input-group-addon"><i></i></span>
-                                <input type="text" value="" class="form-control input-sm" id="left-bkg-color-form">
-                            </div>
+                <div class="form-group">
+                    <label for="left-bkg-color-form" class="col-form-label">Background Color:</label>
+                    <div>
+                        <div id="left-bkg-color" class="input-group colorpicker-component">
+                            <input type="text" value="" class="form-control input-sm" id="left-bkg-color-form">
+                            <span class="input-group-addon"><i></i></span>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="left-height" class="col-sm-4 control-label text-left">Height:</label>
-                        <div class="col-sm-8 text-right">
-                            <input type="text" class="form-control input-sm" id="left-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">&nbsp;&nbsp;&nbsp;<small>Height: <span id="left-height-val">auto</span></small>
-                        </div>
-                    </div>
-
                 </div>
+
+                <div class="form-group">
+                    <label for="left-height" class="col-form-label">Height:</label>
+                    <div class="bs-slider-container">
+                        <input type="text" class="form-control input-sm" id="left-height" data-slider-id="left-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">
+                        <p class="text-left small">Height: <span id="left-height-val">auto</span></p>
+                    </div>
+                </div>
+
             </div>
 
             <div id="dd-sidebar-right-exists">
-                <h5 class="text-left option-title">Right Sidebar Section</h5>
-                <div class="form-horizontal">
-
-                    <div class="form-group">
-                        <label for="right-bkg-color-form" class="col-sm-6 control-label text-left">Background Color:</label>
-                        <div class="col-sm-6">
-                            <div id="right-bkg-color" class="input-group colorpicker-component">
-                                <span class="input-group-addon"><i></i></span>
-                                <input type="text" value="" class="form-control input-sm" id="right-bkg-color-form">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="right-height" class="col-sm-4 control-label text-left">Height:</label>
-                        <div class="col-sm-8 text-right">
-                            <input type="text" class="form-control input-sm" id="right-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">&nbsp;&nbsp;&nbsp;<small>Height: <span id="right-height-val">auto</span></small>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <h5 class="text-left option-title">Footer Section</h5>
-            <div class="form-horizontal">
+                <h6 class="text-left option-title">Right Sidebar Section</h6>
 
                 <div class="form-group">
-                    <label for="footer-bkg-color-form" class="col-sm-6 control-label text-left">Background Color:</label>
-                    <div class="col-sm-6">
-                        <div id="footer-bkg-color" class="input-group colorpicker-component">
+                    <label for="right-bkg-color-form" class="col-form-label">Background Color:</label>
+                    <div>
+                        <div id="right-bkg-color" class="input-group colorpicker-component">
+                            <input type="text" value="" class="form-control input-sm" id="right-bkg-color-form">
                             <span class="input-group-addon"><i></i></span>
-                            <input type="text" value="" class="form-control input-sm" id="footer-bkg-color-form">
                         </div>
                     </div>
-                </div> 
+                </div>
 
                 <div class="form-group">
-                    <label for="footer-height" class="col-sm-4 control-label text-left">Height:</label>
-                    <div class="col-sm-8 text-right">
-                        <input type="text" class="form-control input-sm" id="footer-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">&nbsp;&nbsp;&nbsp;<small>Height: <span id="footer-height-val">auto</span></small>
+                    <label for="right-height" class="col-form-label">Height:</label>
+                    <div class="bs-slider-container">
+                        <input type="text" class="form-control input-sm" id="right-height" data-slider-id="right-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">
+                        <p class="text-left small">Height: <span id="right-height-val">auto</span></p>
                     </div>
                 </div>
+
             </div>
+
+            <h6 class="text-left option-title">Footer Section</h6>
+
+            <div class="form-group">
+                <label for="footer-bkg-color-form" class="col-form-label">Background Color:</label>
+                <div>
+                    <div id="footer-bkg-color" class="input-group colorpicker-component">
+                        <input type="text" value="" class="form-control input-sm" id="footer-bkg-color-form">
+                        <span class="input-group-addon"><i></i></span>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="form-group">
+                <label for="footer-height" class="col-form-label">Height:</label>
+                <div class="bs-slider-container">
+                    <input type="text" class="form-control input-sm" id="footer-height" data-slider-id="footer-height" data-slider-min="0" data-slider-max="1000" data-slider-step="10" data-slider-value="0">
+                    <p class="text-left small">Height: <span id="footer-height-val">auto</span></p>
+                </div>
+            </div>
+
         </div>
         <div class="tools-footer">
             <div class="button-group text-center">

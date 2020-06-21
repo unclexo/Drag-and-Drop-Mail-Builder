@@ -275,7 +275,7 @@ var ajaxUrls = {
 			});
 			
 			/* Load Sliders */
-			$("#head-height, #content-height, #footer-height, #left-height, #right-height").bootstrapSlider();
+			$("#head-height, #content-height, #footer-height, #left-height, #right-height").slider();
 			
 			/* Remove unusefull options */
 			var bodyExists = $('#dd-body');
@@ -1236,7 +1236,7 @@ var ajaxUrls = {
                             } else if(type == 'link') {
                                 $('.colorpicker-component, .colorpicker-component input').colorpicker();
 
-                                $("#link-position").bootstrapSlider().on("slide slideStop", function(slideEvt) {
+                                $("#link-position").slider().on("slide slideStop", function(slideEvt) {
                                     var val = slideEvt.value,
                                     //	set = [0, "0 auto 0 0", "0 auto","0 0 0 auto" ],
                                         align = [0, "left", "center","right" ],
@@ -1248,7 +1248,7 @@ var ajaxUrls = {
                                     input.attr('data-align',val);
                                 });
 
-                                $("#link-size").bootstrapSlider().on("slide slideStop", function(slideEvt) {
+                                $("#link-size").slider().on("slide slideStop", function(slideEvt) {
                                     var val = slideEvt.value,
                                         set = [0, "8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt"]
                                         height = [0, "10pt", "12pt", "14pt", "16pt", "20pt", "26pt", "38pt"],
