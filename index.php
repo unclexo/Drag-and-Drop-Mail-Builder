@@ -129,19 +129,19 @@
     <div class="container-fullscreen">
 
     	<div class="container text-center">
-        	<div id="choose-template" class="text-center hidden">
-                <button class="choose" type="button" data-id="no-sidebar"><img src="assets/img/no-sidebar.jpg" class="img-responsive" alt=""><span>No Sidebar (wide)</span></button>
-                <button class="choose" type="button" data-id="left-sidebar"><img src="assets/img/left-sidebar.jpg" class="img-responsive" alt=""><span>Left Sidebar</span></button>
-                <button class="choose" type="button" data-id="right-sidebar"><img src="assets/img/right-sidebar.jpg" class="img-responsive" alt=""><span>Right Sidebar</span></button>
-                <button class="choose" type="button" data-id="both-sidebar"><img src="assets/img/both-sidebar.jpg" class="img-responsive" alt=""><span>Both Sidebars</span></button>
+        	<div id="choose-template" class="text-center d-none">
+                <button class="choose" type="button" data-id="no-sidebar"><img src="assets/img/no-sidebar.jpg" class="img-fluid" alt=""><p>No Sidebar (wide)</p></button>
+                <button class="choose" type="button" data-id="left-sidebar"><img src="assets/img/left-sidebar.jpg" class="img-fluid" alt=""><p>Left Sidebar</p></button>
+                <button class="choose" type="button" data-id="right-sidebar"><img src="assets/img/right-sidebar.jpg" class="img-fluid" alt=""><p>Right Sidebar</p></button>
+                <button class="choose" type="button" data-id="both-sidebar"><img src="assets/img/both-sidebar.jpg" class="img-fluid" alt=""><p>Both Sidebars</p></button>
             </div>
         </div>
 
-        <div class="container-content hidden" id="mail-template">
+        <div class="container-content d-none" id="mail-template">
             Content
         </div>
 
-        <div class="container-sidebar hidden" id="option-tabs">
+        <div class="container-sidebar d-none" id="option-tabs">
 
             <div id="get-options" class="text-center">
 

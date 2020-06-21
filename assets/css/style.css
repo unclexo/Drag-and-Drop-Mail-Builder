@@ -21,14 +21,16 @@ html, body {
 
 .container-fullscreen {
 	overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 	background: #ffffff;
-	background: -moz-linear-gradient(-45deg,  #ffffff 0%, #fcfcfc 50%, #f1f1f1 52%, #ffffff 100%);
+/*	background: -moz-linear-gradient(-45deg,  #ffffff 0%, #fcfcfc 50%, #f1f1f1 52%, #ffffff 100%);
 	background: -webkit-linear-gradient(-45deg,  #ffffff 0%,#fcfcfc 50%,#f1f1f1 52%,#ffffff 100%);
 	background: linear-gradient(135deg,  #ffffff 0%,#fcfcfc 50%,#f1f1f1 52%,#ffffff 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 );*/
 }
 
-.container-fullscreen > .container,  
+/*.container-fullscreen > .container,  */
 .container-fullscreen .container-content,
 .container-fullscreen .container-sidebar{
 	position:absolute;
@@ -37,10 +39,10 @@ html, body {
 
 .container-fullscreen > .container {
   margin:0px auto;
-  top:50%;
+/*  top:50%;
   left:50%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
 }
 
 .container-fullscreen .container-content,

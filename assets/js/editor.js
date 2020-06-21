@@ -311,8 +311,8 @@ var ajaxUrls = {
 			}).done(function(data){
 				
 				mb.mailTemplate.html(data).promise().done(function(){
-					$('#preview').removeClass('hidden');
-                    $('#setting').removeClass('hidden');
+					$('#preview').removeClass('d-none');
+                    $('#setting').removeClass('d-none');
 					window.location.hash = id;
 					if($.isFunction(callback))
 					{
@@ -330,34 +330,31 @@ var ajaxUrls = {
 		
 		/* Load theme */
 		loadTheme : function(callback){
-			if(window.location.hash)
-			{
+			if(window.location.hash) {
 				var id = window.location.hash,
 					id = id.replace(/\#/,''),
 					link = window.base + '/themes/theme-' + id + '.html';
 				
-				if(['no-sidebar','left-sidebar','right-sidebar','both-sidebar'].indexOf(id) > -1)
-				{					
+				if(['no-sidebar','left-sidebar','right-sidebar','both-sidebar'].indexOf(id) > -1) {					
 					$.get(link).always(function() {
 						mb.chooseTemplate.html(init.loader).promise().done(function(){
-							mb.chooseTemplate.removeClass('hidden');
+							mb.chooseTemplate.removeClass('d-none');
 						});
-					}).done(function(data){
-						mb.mailTemplate.html(data).promise().done(function(){
+					}).done(function(data) {
+						mb.mailTemplate.html(data).promise().done(function() {
 							window.location.hash = id;
 							
 							var savedHTML = $.storage('save-'+id);
 							
-							if(null!=savedHTML && false!=savedHTML && -1!=savedHTML && typeof savedHTML !== 'undefined'){
+							if(null!=savedHTML && false!=savedHTML && -1!=savedHTML && typeof savedHTML !== 'undefined') {
 								
 								savedHTML = init.fixDOM(savedHTML);
 								
 								$('#mail-template').html(savedHTML).promise().done(function(){
-									$('#preview').removeClass('hidden');
-                                    $('#setting').removeClass('hidden');
+									$('#preview').removeClass('d-none');
+                                    $('#setting').removeClass('d-none');
 									$('.editable-open').addClass('editable').removeClass('editable-open');
-									if($.isFunction(callback))
-									{
+									if($.isFunction(callback)) {
 										callback(true, data, id, link);
 									}
 								});
@@ -369,21 +366,21 @@ var ajaxUrls = {
 							callback(false, a, b, c);
 						}
 					});
-				}
-				else
-					mb.chooseTemplate.removeClass('hidden');
+				} else {
+					mb.chooseTemplate.removeClass('d-none');
+                }
 				
-			}
-			else
-				mb.chooseTemplate.removeClass('hidden');
+			} else {
+				mb.chooseTemplate.removeClass('d-none');
+            }
 		},
 		
 		/* Load editor */
 		editorLoad : function(){
 			mb.chooseTemplate.fadeOut(function(){
-				$(this).hide().addClass('hidden');
-				mb.optionTabs.hide().removeClass('hidden').fadeIn();
-				mb.mailTemplate.hide().removeClass('hidden').fadeIn();
+				$(this).hide().addClass('d-none');
+				mb.optionTabs.hide().removeClass('d-none').fadeIn();
+				mb.mailTemplate.hide().removeClass('d-none').fadeIn();
 			});
 		},
 		
@@ -534,11 +531,10 @@ var ajaxUrls = {
 	**/
 	
 	/* Change theme on click */
-	mb.chooseTemplate.find('.choose').on('click',function(e){
+	mb.chooseTemplate.find('.choose').on('click',function(e) {
 		e.preventDefault();
-		init.chooseTheme(this, e, function(load){
-			if(load===true)
-			{
+		init.chooseTheme(this, e, function(load) {
+			if(load===true) {
 				init.editorLoad();
 				init.dragAndDrop();
 				init.loadOptions();
