@@ -185,6 +185,15 @@
             <button type="button" class="close" data-dismiss="tools" aria-label="Close"><span aria-hidden="true">×</span></button>
             <h4><span class="fa fa-cog fa-spin"></span> Settings</h4>
         </div>
+
+        <div class="tools-footer">
+            <div class="button-group text-center">
+                <button class="btn btn-danger btn-sm" type="button" id="delete"><i class="fa fa-trash"></i> Delete</button>
+                <button class="btn btn-warning btn-sm" type="button" id="test"><i class="fa fa-paper-plane"></i> Send Test</button>
+                <button class="btn btn-success btn-sm" data-dismiss="tools" type="button" id="send-message"><i class="fa fa-check-circle-o"></i> Done</button>
+            </div>
+        </div>
+
         <div class="tools-body">
 
             <h6 class="text-left option-title mt-3">Layout</h6>
@@ -278,7 +287,7 @@
             </div>
 
             <div id="dd-sidebar-right-exists">
-                <h6 class="text-left option-title">Right Sidebar Section</h6>
+                <h6 class="text-left option-title mt-4">Right Sidebar Section</h6>
 
                 <div class="form-group">
                     <label for="right-bkg-color-form" class="col-form-label">Background Color:</label>
@@ -320,13 +329,6 @@
                 </div>
             </div>
 
-        </div>
-        <div class="tools-footer">
-            <div class="button-group text-center">
-                <button class="btn btn-success btn-sm" data-dismiss="tools" type="button" id="send-message"><span class="glyphicon glyphicon-ok"></span> I'm Done</button>
-                <button class="btn btn-warning btn-sm" type="button" id="test"><span class="glyphicon glyphicon-envelope"></span> Send Test</button>
-                <button class="btn btn-danger btn-sm" type="button" id="delete"><span class="glyphicon glyphicon-remove-sign"></span> Delete Project</button>
-            </div>
         </div>
     </div>
 

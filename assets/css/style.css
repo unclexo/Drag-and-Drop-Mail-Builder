@@ -1263,16 +1263,18 @@ button, input[type='button'],
 
 .tools{
     width:330px;
-    height: auto;
+    height: 100%;
+    /*height: auto;*/
     position: absolute;
-    top: 16%;
-    transform: translate(0,-16%);
+    top: 0;
+    /*top: 16%;*/
+    /*transform: translate(0,-16%);*/
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid #999;
+/*  border: 1px solid #999;
     border: 1px solid rgba(0,0,0,.2);
-    border-radius: 6px;
+    border-radius: 6px;*/
     outline: 0;
     -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
     box-shadow: 0 3px 9px rgba(0,0,0,.5);
@@ -1280,12 +1282,15 @@ button, input[type='button'],
     
     -webkit-transition: all 400ms ease-out; /* Safari */
     transition: all 400ms ease-out;
+    overflow: 'hidden';
+    overflow-x: 'hidden';
+    overflow-y: auto;
 }
 .tools.tools-left{
     left:-330px;
 }
 .tools.tools-left.in{
-    left:15px;
+    left:0px;
 }
 
 .tools > .tools-header,
@@ -1294,7 +1299,7 @@ button, input[type='button'],
     padding: 15px;
 }
 .tools > .tools-header{
-    border-bottom: 1px solid #e5e5e5;
+    /*border-bottom: 1px solid #e5e5e5;*/
 }
 .tools > .tools-header h1,
 .tools > .tools-header h2,
@@ -1310,9 +1315,9 @@ button, input[type='button'],
 }
 
 .tools > .tools-body{
-    max-height: 600px;
+/*    max-height: 600px;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: hidden;*/
     padding: 0 15px;
 }
 

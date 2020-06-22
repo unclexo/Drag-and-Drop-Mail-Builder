@@ -7,7 +7,7 @@ var ajaxUrls = {
 	 * Here starting main functionality of mail builder
 	**/ 
     var textEditor,
-        MediumEditorHook ={ 
+        MediumEditorHook = { 
             clean : function(){
                 (function(e){
                     var editor = $(e);
@@ -25,10 +25,9 @@ var ajaxUrls = {
                 }('.medium-editor-element'));
             }
         },
-        /**
-         * Clear tooltip
-        **/
-        totalCleaner = function(){
+
+        /* Clear tooltip */
+        totalCleaner = function() {
             
             $('.tooltip-editor').remove();
 
@@ -43,7 +42,80 @@ var ajaxUrls = {
                          .removeAttr('data-original-title')
                          .removeAttr('title')
             });
-        }
+        },
+
+        /* Process tempate data */
+        processTemplateData = function (button) {
+            $("#modal #dd-body-background").css({
+                height:'',
+            });
+            
+            setTimeout(function () {
+
+                MediumEditorHook.clean();
+                totalCleaner();
+
+                var RD = $("#modal #dd-body-background table[data-edit]") || [],
+                    RDmax = RD.length,
+                    IR = $("#modal #dd-body-background img") || [],
+                    IRmax = IR.length,
+                    RE = $("#modal #dd-head, #modal #dd-body, #modal #dd-footer, #modal #dd-sidebar-left, #modal #dd-sidebar-right"),
+                    REmax = RE.length;
+
+                $('#modal #dd-body-background .overly').remove();
+
+                for (i = 0; i < RDmax; i++) {
+
+                    $(RD[i]).css({
+                        width: '100%'
+                    });
+                    $(RD[i]).find('tr > td').css({
+                        padding: '',
+                        margin: ''
+                    });
+
+                    $(RD[i]).find('table tr > td').css({
+                        padding: '',
+                        margin: ''
+                    });
+                }
+
+                for (j = 0; j < IRmax; j++) {
+                    $(IR[j]).css({
+                            width: '100%',
+                            height: 'auto'
+                        })
+                        .removeAttr('class');
+                }
+
+                for (r = 0; r < REmax; r++) {
+                    var rem = $(RE[r]).html().trim();
+                    if (rem == '') {
+                        $(RE[r]).remove();
+                    } else {
+                        $(RE[r]).find('a').each(function () {
+                            $(this).css('text-decoration', 'none');
+                        });
+                    }
+                }
+
+                setTimeout(function () {
+                    var AE = $("#modal #saved-template *"),
+                        AEmax = AE.length;
+
+                    for (k = 0; k < AEmax; k++) {
+                        $(AE[k])
+                            .removeAttr('class')
+                            .removeAttr('data-edit')
+                            .removeAttr('id');
+                    }
+
+                    button.prop('disabled', false);
+
+                }, 100);
+
+            }, 200);
+        };
     
 	/* Global Selectors */
 	var mb = {
@@ -1521,64 +1593,83 @@ var ajaxUrls = {
 				height:'',
 			});
 			
-			setTimeout(function() {
-				var RD = $("#modal #dd-body-background table[data-edit]") || [],
-					RDmax = RD.length,
-					IR = $("#modal #dd-body-background img") || [],
-					IRmax = IR.length,
-					RE = $("#modal #dd-head, #modal #dd-body, #modal #dd-footer, #modal #dd-sidebar-left, #modal #dd-sidebar-right"),
-					REmax = RE.length;
+            setTimeout(function () {
+                var RD = $("#modal #dd-body-background table[data-edit]") || [],
+                    RDmax = RD.length,
+                    IR = $("#modal #dd-body-background img") || [],
+                    IRmax = IR.length,
+                    RE = $("#modal #dd-head, #modal #dd-body, #modal #dd-footer, #modal #dd-sidebar-left, #modal #dd-sidebar-right"),
+                    REmax = RE.length;
 
-				$('#modal #dd-body-background .overly').remove();
-				
-				for(i = 0; i < RDmax; i++) {
-					
-					$(RD[i]).css({
-						width : $(RD[i]).parent().width() + 'px'
-					});
+                $('#modal #dd-body-background .overly').remove();
 
-					$(RD[i]).find('tr > td').css({
-						padding:'15px 15px'
-					});
-					
-					$(RD[i]).find('table tr > td').css({
-						padding:'15px 15px'
-					});
-				}
-				
-				for(j = 0; j < IRmax; j++) {
+                for (i = 0; i < RDmax; i++) {
 
-					$(IR[j]).css({
-						width : '100%',
-						height : 'auto'
-					})
-					.removeAttr('class');
-				}
-				
-				for(r = 0; r < REmax; r++) {
-					var rem = $(RE[r]).html().trim();
-					if(rem == '') {
-						$(RE[r]).remove();
+                    $(RD[i]).css({
+                        width: $(RD[i]).parent().width() + 'px'
+                    });
+
+                    $(RD[i]).find('tr > td').css({
+                        padding: '15px 15px'
+                    });
+
+                    $(RD[i]).find('table tr > td').css({
+                        padding: '15px 15px'
+                    });
+                }
+
+                for (j = 0; j < IRmax; j++) {
+
+                    $(IR[j]).css({
+                            width: '100%',
+                            height: 'auto'
+                        })
+                        .removeAttr('class');
+                }
+
+                for (r = 0; r < REmax; r++) {
+                    var rem = $(RE[r]).html().trim();
+                    if (rem == '') {
+                        $(RE[r]).remove();
                     }
-				}
-				
-				setTimeout(function() {
-					var AE = $("#modal .modal-body *"),
-						AEmax = AE.length;
-				
-					for(k=0; k < AEmax; k++) {
-						$(AE[k])
-							.removeAttr('class')
-							.removeAttr('data-edit')
-							.removeAttr('id');
-					}
-					
-					$button.prop('disabled',false);
-				}, 50);
+                }
 
-			}, 200);
+                setTimeout(function () {
+                    var AE = $("#modal .modal-body *"),
+                        AEmax = AE.length;
+
+                    for (k = 0; k < AEmax; k++) {
+                        $(AE[k])
+                            .removeAttr('class')
+                            .removeAttr('data-edit')
+                            .removeAttr('id');
+                    }
+
+                    $button.prop('disabled', false);
+                }, 50);
+
+            }, 200);
 		});
 	});
+
+    $("#save-email-template").on('click touchstart',function(e) {
+        e.preventDefault();
+        
+        var $button = $(this),
+            data = $("#mail-template").html();
+            data = data.replace(/(<button.*?>.*?<\/button>)/g,'');
+        
+        $button.tooltip('hide');
+        
+        $button.prop('disabled',true);
+
+        $("#modal #dd-body-background").css({
+            height:'',
+        });
+        
+        /* Process template data */
+        processTemplateData($button);
+    });
 	
 	$(document).on('click','#test-submit', function(e){
 		e.preventDefault();
@@ -1633,7 +1724,7 @@ var ajaxUrls = {
 				form+= '<input type="text" class="form-control" placeholder="test@example.com" value="" id="test-input">';
 			form+= '</div>';
 			
-			data = '<div id="saved-template" class="hidden">' + data + '</div>' + form;
+			data = '<div id="saved-template">' + data + '</div>' + form;
 		
 		$button.prop('disabled',true);
 		
@@ -1644,7 +1735,7 @@ var ajaxUrls = {
 			keyboard 	: true,
 			static 		: true,
 			close		: true,
-			large		: false,
+			large		: true,
 			class		: 'modal-preview'
 		},
 		function($this){
@@ -1652,7 +1743,7 @@ var ajaxUrls = {
 				height:'',
 			});
 			
-			setTimeout(function(){
+			setTimeout(function() {
                 
                 MediumEditorHook.clean();
                 totalCleaner();
@@ -1720,7 +1811,7 @@ var ajaxUrls = {
 					
 				},100);
 				
-			},200);
+			}, 200);
 		});
 	});
 	
