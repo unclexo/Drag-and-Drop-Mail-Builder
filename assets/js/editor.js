@@ -1,5 +1,9 @@
 var ajaxUrls = {
+    // Response should be json object { status: true }
     computerUploadUrl: 'https://192.168.10.60/xerochat/test/upload_file',
+
+    // Response should be json object { status: true }
+    sendTestEmailUrl: 'https://192.168.10.60/xerochat/test/send_email',
 };
 
 (function($, ajaxUrls){
@@ -163,7 +167,8 @@ var ajaxUrls = {
 			return DOM;
 		},
 		/* Loader template */
-		loader : '<svg version="1.1" id="rc-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="-5.42 -1.566 50 50" enable-background="new -5.42 -1.566 50 50" xml:space="preserve"> <g><g><path id="r" fill="#6D6D6D" d="M-5.42,48.177L2.698,8.609C2.985,7.108,3.125,6.18,3.125,5.835c0-0.601-0.168-1.059-0.503-1.387C2.293,4.111,1.791,3.868,1.125,3.712C0.466,3.56-0.365,3.459-1.36,3.43c-1-0.04-2.131-0.055-3.429-0.055l0.313-2.415C1.75-0.646,6.51-1.453,9.83-1.453c2.407,0,4.345,0.437,5.807,1.313c1.47,0.874,2.208,2.163,2.208,3.875c0,0.314-0.02,0.686-0.05,1.144c6.414-4.295,12.872-6.444,19.33-6.444l0.364,0.479c-1.257,5.487-2.456,11.247-3.617,17.29l-3.242,0.523c-0.63-3.808-1.406-6.396-2.305-7.775c-0.915-1.375-2.225-2.076-3.938-2.076c-1.844,0-4.316,0.77-7.39,2.315L9.198,47.638L-5.42,48.177z"/></g></g><path id="fish" fill="#494949" d="M32.124,14.289c0.026-1.781,1.096-4.482,3.97-8.67c-4.736,1.839-7.651,4.064-9.489,6.019c-1.222-0.351-2.497-0.585-3.816-0.68C13.679,10.3,3.44,16.303,1.217,24.833c-0.285,1.091-0.474,2.222-0.557,3.385c-0.051,0.719,2.666,0.879,2.738,2.232c0.045,0.838-2.613,1.799-2.459,2.604c1.542,8.102,10.553,14.482,19.168,15.104c8.039,0.578,15.254-4.026,18.367-10.979c0.479-1.069,0.861-2.193,1.134-3.364c0.22-0.945,4.9,3.268,4.972,2.27c0.031-0.436-1.513-3.784-1.497-6.236c0.016-2.408,1.524-6.447,1.497-6.864c-0.065-1.016-4.735,3.342-4.96,2.374C38.571,20.836,35.858,16.906,32.124,14.289z"/><g><path id="c" fill="#FFFFFF" d="M24.01,32.078l5.445,0.061c-0.661,3.043-1.876,5.398-3.652,7.059c-1.772,1.663-3.938,2.479-6.499,2.45c-2.866-0.031-4.945-1.139-6.235-3.328c-1.29-2.19-1.626-5.176-1.008-8.95c0.616-3.771,1.916-6.726,3.9-8.888c1.984-2.16,4.381-3.223,7.191-3.192c2.591,0.029,4.497,0.863,5.72,2.497c1.221,1.633,1.676,3.948,1.363,6.954l-5.499-0.061c0.111-1.184-0.041-2.078-0.449-2.689c-0.415-0.604-1.082-0.914-2.005-0.925c-1.127-0.013-2.057,0.507-2.794,1.566c-0.737,1.062-1.28,2.657-1.631,4.8c-0.343,2.106-0.303,3.7,0.12,4.783c0.422,1.085,1.213,1.639,2.369,1.65c0.896,0.01,1.655-0.319,2.286-0.97C23.259,34.243,23.721,33.298,24.01,32.078z"/></g><path id="eye" fill="#DBDBDB" d="M7.82,23.135c0,0.928-0.752,1.68-1.681,1.68l0,0c-0.928,0-1.68-0.752-1.68-1.68l0,0c0-0.93,0.752-1.682,1.68-1.682l0,0C7.068,21.454,7.82,22.206,7.82,23.135L7.82,23.135z"/></svg>',
+		// loader : '<svg version="1.1" id="rc-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="-5.42 -1.566 50 50" enable-background="new -5.42 -1.566 50 50" xml:space="preserve"> <g><g><path id="r" fill="#6D6D6D" d="M-5.42,48.177L2.698,8.609C2.985,7.108,3.125,6.18,3.125,5.835c0-0.601-0.168-1.059-0.503-1.387C2.293,4.111,1.791,3.868,1.125,3.712C0.466,3.56-0.365,3.459-1.36,3.43c-1-0.04-2.131-0.055-3.429-0.055l0.313-2.415C1.75-0.646,6.51-1.453,9.83-1.453c2.407,0,4.345,0.437,5.807,1.313c1.47,0.874,2.208,2.163,2.208,3.875c0,0.314-0.02,0.686-0.05,1.144c6.414-4.295,12.872-6.444,19.33-6.444l0.364,0.479c-1.257,5.487-2.456,11.247-3.617,17.29l-3.242,0.523c-0.63-3.808-1.406-6.396-2.305-7.775c-0.915-1.375-2.225-2.076-3.938-2.076c-1.844,0-4.316,0.77-7.39,2.315L9.198,47.638L-5.42,48.177z"/></g></g><path id="fish" fill="#494949" d="M32.124,14.289c0.026-1.781,1.096-4.482,3.97-8.67c-4.736,1.839-7.651,4.064-9.489,6.019c-1.222-0.351-2.497-0.585-3.816-0.68C13.679,10.3,3.44,16.303,1.217,24.833c-0.285,1.091-0.474,2.222-0.557,3.385c-0.051,0.719,2.666,0.879,2.738,2.232c0.045,0.838-2.613,1.799-2.459,2.604c1.542,8.102,10.553,14.482,19.168,15.104c8.039,0.578,15.254-4.026,18.367-10.979c0.479-1.069,0.861-2.193,1.134-3.364c0.22-0.945,4.9,3.268,4.972,2.27c0.031-0.436-1.513-3.784-1.497-6.236c0.016-2.408,1.524-6.447,1.497-6.864c-0.065-1.016-4.735,3.342-4.96,2.374C38.571,20.836,35.858,16.906,32.124,14.289z"/><g><path id="c" fill="#FFFFFF" d="M24.01,32.078l5.445,0.061c-0.661,3.043-1.876,5.398-3.652,7.059c-1.772,1.663-3.938,2.479-6.499,2.45c-2.866-0.031-4.945-1.139-6.235-3.328c-1.29-2.19-1.626-5.176-1.008-8.95c0.616-3.771,1.916-6.726,3.9-8.888c1.984-2.16,4.381-3.223,7.191-3.192c2.591,0.029,4.497,0.863,5.72,2.497c1.221,1.633,1.676,3.948,1.363,6.954l-5.499-0.061c0.111-1.184-0.041-2.078-0.449-2.689c-0.415-0.604-1.082-0.914-2.005-0.925c-1.127-0.013-2.057,0.507-2.794,1.566c-0.737,1.062-1.28,2.657-1.631,4.8c-0.343,2.106-0.303,3.7,0.12,4.783c0.422,1.085,1.213,1.639,2.369,1.65c0.896,0.01,1.655-0.319,2.286-0.97C23.259,34.243,23.721,33.298,24.01,32.078z"/></g><path id="eye" fill="#DBDBDB" d="M7.82,23.135c0,0.928-0.752,1.68-1.681,1.68l0,0c-0.928,0-1.68-0.752-1.68-1.68l0,0c0-0.93,0.752-1.682,1.68-1.682l0,0C7.068,21.454,7.82,22.206,7.82,23.135L7.82,23.135z"/></svg>',
+        loader : '',
 		/* Tooltips */
 		tooltips : 	'<button type="button" class="copy" title="Copy"><i class="fa fa-clone"></i></button>' + 
                 '<div class="overly"></div>' + 
@@ -1692,21 +1697,21 @@ var ajaxUrls = {
 					currentAttachments = '';
 				}
 				
-				$.post(window.base + '/include/test-email.php', {mail:val, body:body, attachments : currentAttachments}).done(function(returns){
-					if(returns == 'true') {
-						$input.parent().after('<div class="alert alert-success" role="alert">Test email was successfully sent!</div>');
+				$.post(ajaxUrls.sendTestEmailUrl, {mail:val, body:body, attachments : currentAttachments}).done(function(data){
+					if(true === data.status) {
+						$input.parent().after('<div class="alert alert-success mt-3" role="alert">Test email was successfully sent!</div>');
 						$input.parent().remove();
-						$button.text('Done').attr({'data-dismiss':'modal', 'id':null}).removeClass('btn-success').addClass('btn-primary').prepend('<span class="glyphicon glyphicon-ok"></span> ');
+						$button.text('Done').attr({'data-dismiss':'modal', 'id':null}).removeClass('btn-success').addClass('btn-primary').prepend('<i class="fa fa-check"></i> ');
 					} else {
-						$input.parent().after('<div class="alert alert-danger" role="alert">Some error happen, can\'t send email.</div>');
+						$input.parent().after('<div class="alert alert-danger mt-3" role="alert">Some error happen, can\'t send email.</div>');
 					}
 				}).fail(function(a,b,c){
-					console.log(a,b,c);
-					$input.parent().after('<div class="alert alert-danger" role="alert">Some error happen, can\'t send email.</div>');
+					// console.log(a,b,c);
+					$input.parent().after('<div class="alert alert-danger mt-3" role="alert">Some error happen, can\'t send email.</div>');
 				});
 			}
 		} else {
-			$input.parent().after('<div class="alert alert-danger" role="alert">You must insert email address.</div>');
+			$input.parent().after('<div class="alert alert-danger mt-3" role="alert">You must insert email address.</div>');
         }
 	});
 	
