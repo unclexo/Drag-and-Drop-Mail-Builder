@@ -1354,30 +1354,6 @@ var ajaxUrls = {
         }
     });
     
-    /**
-     CLEAN DYNAMIC IMAGE EDITOR
-    **/
-    $(document).on('click touchstart', '#img-editor-wrapper > .close', function(e){
-        e.preventDefault();
-        var c = confirm('If you close without save, you will lost your data.');
-        if(c)
-        {
-            $.post( window.base + '/include/fetch-image.php', {
-                clean : $('#image-edit').attr('data-name'),
-                option : 'clean'
-            }).done(function(data){
-                console.log(data);
-            });
-            
-            if($("#img-editor"))
-                $("#img-editor").unbind('imageEditor');
-            
-            $('#img-editor-wrapper').fadeOut('200',function(){
-                $(this).remove();
-            });
-        }
-    });
-    
     /***
     for(var i in localStorage) {
         if(/editor_\d+/.test(i))
@@ -1698,6 +1674,9 @@ var ajaxUrls = {
 				}
 				
 				$.post(ajaxUrls.sendTestEmailUrl, {mail:val, body:body, attachments : currentAttachments}).done(function(data){
+
+                    console.log(data);
+
 					if(true === data.status) {
 						$input.parent().after('<div class="alert alert-success mt-3" role="alert">Test email was successfully sent!</div>');
 						$input.parent().remove();
@@ -1706,7 +1685,7 @@ var ajaxUrls = {
 						$input.parent().after('<div class="alert alert-danger mt-3" role="alert">Some error happen, can\'t send email.</div>');
 					}
 				}).fail(function(a,b,c){
-					// console.log(a,b,c);
+					console.log(a,b,c);
 					$input.parent().after('<div class="alert alert-danger mt-3" role="alert">Some error happen, can\'t send email.</div>');
 				});
 			}

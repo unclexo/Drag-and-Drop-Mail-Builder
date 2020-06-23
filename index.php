@@ -332,9 +332,9 @@
         </div>
     </div>
 
-    <script src="https://use.fontawesome.com/86c8941095.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/font-awesome.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/sweetalert.min.js"></script>
